@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+
+<meta charset="utf-8" />
+
+<title>Metronic | Data Tables - Managed Tables</title>
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+<meta content="" name="description" />
+
+<meta content="" name="author" />
+
+<link href="../support/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="../support/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="../support/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+<link href="../support/css/style-metro.css" rel="stylesheet" type="text/css"/>
+
+<link href="../support/css/style.css" rel="stylesheet" type="text/css"/>
+
+<link href="../support/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+
+<link href="../support/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+<link href="../support/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="../support/css/select2_metro.css" />
+
+<link rel="stylesheet" href="../support/css/DT_bootstrap.css" />
+
+<link rel="shortcut icon" href="../support/image/favicon.ico" />
+
+</head>
+
+<body class="page-header-fixed page-sidebar-fixed page-footer-fixed">
+
+<div class="header navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="index.html">
+                <img src="../support/image/logo.png" alt="logo" />
+            </a>
+
+            <a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <img src="../support/image/menu-toggler.png" alt="" />
+            </a>
+
+            <ul class="nav pull-right">
+                <li class="dropdown" id="header_notification_bar">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-warning"></i>
+
+                        <span class="badge">6</span>
+                    </a>
+
+                    <ul class="dropdown-menu extended notification">
+                        <li>
+                            <p>You have 14 new notifications</p>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <span class="label label-success"><i class="fa fa-plus"></i></span>
+
+                                <span>New user registered.</span>
+
+                                <span class="time">Just now</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <span class="label label-important"><i class="fa fa-bolt"></i></span>
+
+                                <span>Server #12 overloaded.</span>
+
+                                <span class="time">15 mins</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <span class="label label-warning"><i class="fa fa-bell"></i></span>
+
+                                <span>Server #2 not respoding.</span>
+
+                                <span class="time">22 mins</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <span class="label label-info"><i class="fa fa-bullhorn"></i></span>
+
+                                <span>Application error.</span>
+
+                                <span class="time">40 mins</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <span class="label label-important"><i class="fa fa-bolt"></i></span>
+
+                                <span>Database overloaded 68%.</span>
+
+                                <span class="time">2 hrs</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+                                <span class="label label-important"><i class="fa fa-bolt"></i></span>
+
+                                <span>2 user IP blocked.</span>
+
+                                <span class="time">5 hrs</span>
+                            </a>
+                        </li>
+
+                        <li class="external">
+                            <a href="javascript:void(0);"><span>See all notifications </span><i class="m-icon-swapright"></i></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" id="header_inbox_bar">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope"></i>
+
+                        <span class="badge">5</span>
+                    </a>
+
+                    <ul class="dropdown-menu extended inbox">
+                        <li>
+                            <p>You have 12 new messages</p>
+                        </li>
+
+                        <li>
+                            <a href="inbox.html?a=view">
+                                <span class="photo"><img src="../support/image/avatar2.jpg" alt="" /></span>
+
+								<span class="subject">
+                                    <span class="from">Lisa Wong</span>
+
+                                    <span class="time">Just Now</span>
+								</span>
+
+								<span class="message">
+								    Vivamus sed auctor nibh congue nibh. auctor nibh
+								    auctor nibh...
+								</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="inbox.html?a=view">
+                                <span class="photo"><img src="../support/image/avatar3.jpg" alt="" /></span>
+
+								<span class="subject">
+                                    <span class="from">Richard Doe</span>
+
+                                    <span class="time">16 mins</span>
+								</span>
+
+								<span class="message">
+								    Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh
+								    auctor nibh...
+								</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="inbox.html?a=view">
+                                <span class="photo"><img src="../support/image/avatar1.jpg" alt="" /></span>
+
+								<span class="subject">
+                                    <span class="from">Bob Nilson</span>
+
+                                    <span class="time">2 hrs</span>
+								</span>
+
+								<span class="message">
+								    Vivamus sed nibh auctor nibh congue nibh. auctor nibh
+								    auctor nibh...
+								</span>
+                            </a>
+                        </li>
+
+                        <li class="external">
+                            <a href="inbox.html">See all messages <i class="m-icon-swapright"></i></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown" id="header_task_bar">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-tasks"></i>
+
+                        <span class="badge">5</span>
+                    </a>
+
+                    <ul class="dropdown-menu extended tasks">
+                        <li>
+                            <p>You have 12 pending tasks</p>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+								<span class="task">
+                                    <span class="desc">New release v1.2</span>
+
+                                    <span class="percent">30%</span>
+								</span>
+
+								<span class="progress progress-success ">
+								    <span style="width: 30%;" class="bar"></span>
+								</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+								<span class="task">
+								    <span class="desc">Application deployment</span>
+
+								    <span class="percent">65%</span>
+								</span>
+
+								<span class="progress progress-danger progress-striped active">
+								    <span style="width: 65%;" class="bar"></span>
+								</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+								<span class="task">
+                                    <span class="desc">Mobile app release</span>
+
+                                    <span class="percent">98%</span>
+								</span>
+
+								<span class="progress progress-success">
+								    <span style="width: 98%;" class="bar"></span>
+								</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+								<span class="task">
+								    <span class="desc">Database migration</span>
+
+								    <span class="percent">10%</span>
+								</span>
+
+								<span class="progress progress-warning progress-striped">
+								    <span style="width: 10%;" class="bar"></span>
+								</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+								<span class="task">
+								    <span class="desc">Web server upgrade</span>
+
+								    <span class="percent">58%</span>
+								</span>
+
+								<span class="progress progress-info">
+								    <span style="width: 58%;" class="bar"></span>
+								</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:void(0);">
+								<span class="task">
+								    <span class="desc">Mobile development</span>
+
+								    <span class="percent">85%</span>
+								</span>
+
+								<span class="progress progress-success">
+								    <span style="width: 85%;" class="bar"></span>
+								</span>
+                            </a>
+                        </li>
+
+                        <li class="external">
+                            <a href="javascript:void(0);">See all tasks <i class="m-icon-swapright"></i></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown user">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        <img alt="" src="../support/image/avatar1_small.jpg" />
+
+                        <span class="username">Bob Nilson</span>
+
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="extra_profile.html"><i class="fa fa-user"></i> My Profile</a></li>
+
+                        <li><a href="page_calendar.html"><i class="fa fa-calendar"></i> My Calendar</a></li>
+
+                        <li><a href="inbox.html"><i class="fa fa-envelope"></i> My Inbox(3)</a></li>
+
+                        <li><a href="javascript:void(0);"><i class="fa fa-tasks"></i> My Tasks</a></li>
+
+                        <li class="divider"></li>
+
+                        <li><a href="extra_lock.html"><i class="fa fa-lock"></i> Lock Screen</a></li>
+
+                        <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="page-container row-fluid">
+    <div class="page-sidebar nav-collapse collapse">
+        <ul class="page-sidebar-menu">
+            <li class="start" style="margin-top: 20px;">
+                <a href="#Dashboard">
+                    <i class="fa fa-home"></i>
+
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-cogs"></i>
+
+                    <span class="title">Layouts</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#Horzontal"> Horzontal & Sidebar Menu</a>
+                    </li>
+
+                    <li>
+                        <a href="#Horzontal1">Horzontal Menu 1</a>
+                    </li>
+
+                    <li>
+                        <a href="#Horzontal2">Horzontal Menu 2</a>
+                    </li>
+
+                    <li>
+                        <a href="#Promo">Promo Page</a>
+                    </li>
+
+                    <li>
+                        <a href="#Email">Email Templates</a>
+                    </li>
+
+                    <li>
+                        <a href="#Content">Content Loading via Ajax</a>
+                    </li>
+
+                    <li>
+                        <a href="#Sidebar">Sidebar Closed Page</a>
+                    </li>
+
+                    <li>
+
+                        <a href="#Blank">Blank Page</a>
+                    </li>
+
+                    <li>
+                        <a href="#Boxed">Boxed Page</a>
+                    </li>
+
+                    <li>
+                        <a href="#NonResponsive">Non-Responsive Boxed Layout</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-bookmark-o"></i>
+
+                    <span class="title">UI Features</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#General">General</a>
+                    </li>
+
+                    <li>
+                        <a href="#Buttons">Buttons</a>
+                    </li>
+
+                    <li>
+                        <a href="#Enhanced">Enhanced Modals</a>
+                    </li>
+
+                    <li>
+                        <a href="#Tabs">Tabs & Accordions</a>
+                    </li>
+
+                    <li>
+                        <a href="#jQueryUI">jQuery UI Components</a>
+                    </li>
+
+                    <li>
+                        <a href="#Sliders">Sliders</a>
+                    </li>
+
+                    <li>
+                        <a href="#Tiles">Tiles</a>
+                    </li>
+
+                    <li>
+                        <a href="#Typography">Typography</a>
+                    </li>
+
+                    <li>
+                        <a href="#Tree">Tree View</a>
+                    </li>
+
+                    <li>
+                        <a href="#Nestable">Nestable List</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-table"></i>
+
+                    <span class="title">Form Stuff</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#Form">Form Layouts</a>
+                    </li>
+
+                    <li>
+                        <a href="#Advance">Advance Form Samples</a>
+                    </li>
+
+                    <li>
+                        <a href="#Components">Form Components</a>
+                    </li>
+
+                    <li>
+                        <a href="#Wizard">Form Wizard</a>
+                    </li>
+
+                    <li>
+                        <a href="#Validation">Form Validation</a>
+                    </li>
+
+                    <li>
+                        <a href="#Multiple">Multiple File Upload</a>
+                    </li>
+
+                    <li>
+                        <a href="#Dropzone">Dropzone File Upload</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-briefcase"></i>
+
+                    <span class="title">Pages</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#Timeline">
+                            <i class="fa fa-time"></i>
+
+                            <span>Timeline</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#Coming">
+                            <i class="fa fa-cogs"></i>
+
+                            <span>Coming Soon</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#Blog">
+                            <i class="fa fa-comments"></i>
+
+                            <span>Blog</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#Post">
+                            <i class="fa fa-font"></i>
+
+                            <span>Blog Post</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#News">
+                            <i class="fa fa-coffee"></i>
+
+                            <span>News</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#View">
+                            <i class="fa fa-bell"></i>
+
+                            <span>News View</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#About">
+                            <i class="fa fa-group"></i>
+
+                            <span>About Us</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#ContactUs">
+                            <i class="fa fa-envelope-alt"></i>
+
+                            <span>Contact Us</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#Calendar">
+                            <i class="fa fa-calendar"></i>
+
+                            <span>Calendar</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-gift"></i>
+
+                    <span class="title">Extra</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#Profile">User Profile</a>
+                    </li>
+
+                    <li>
+                        <a href="#Lock">Lock Screen</a>
+                    </li>
+
+                    <li>
+                        <a href="#FAQ">FAQ</a>
+                    </li>
+
+                    <li>
+                        <a href="#Inbox">Inbox</a>
+                    </li>
+
+                    <li>
+                        <a href="#Search">Search Results</a>
+                    </li>
+
+                    <li>
+                        <a href="#Invoice">Invoice</a>
+                    </li>
+
+                    <li>
+                        <a href="#Pricing">Pricing Tables</a>
+                    </li>
+
+                    <li>
+                        <a href="#Image">Image Manager</a>
+                    </li>
+
+                    <li>
+                        <a href="#4041">404 Page Option 1</a>
+                    </li>
+
+                    <li>
+                        <a href="#4042">404 Page Option 2</a>
+                    </li>
+
+                    <li>
+                        <a href="#4043">404 Page Option 3</a>
+                    </li>
+
+                    <li>
+                        <a href="#5001">500 Page Option 1</a>
+                    </li>
+
+                    <li>
+                        <a href="#5002">500 Page Option 2</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="active" href="javascript:void(0);">
+                    <i class="fa fa-sitemap"></i>
+
+                    <span class="title">3 Level Menu</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <span>Item 1</span>
+
+                            <span class="arrow"></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li><a href="#Sample1">Sample Link 1</a></li>
+
+                            <li><a href="#Sample2">Sample Link 2</a></li>
+
+                            <li><a href="#Sample3">Sample Link 3</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);">
+                            <span>Item 1</span>
+
+                            <span class="arrow"></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li><a href="#Sample4">Sample Link 1</a></li>
+
+                            <li><a href="#Sample5">Sample Link 1</a></li>
+
+                            <li><a href="#Sample6">Sample Link 1</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#Item">Item 3</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-folder-open"></i>
+
+                    <span class="title">4 Level Menu</span>
+
+                    <span class="arrow"></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-cogs"></i>
+
+                            <span>Item 1</span>
+
+                            <span class="arrow"></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <i class="fa fa-user"></i>
+
+                                    <span>Sample Link 1</span>
+
+                                    <span class="arrow"></span>
+                                </a>
+
+                                <ul class="sub-menu">
+                                    <li><a href="#Sample7"><i class="fa fa-remove"></i> Sample Link 1</a></li>
+
+                                    <li><a href="#Sample8"><i class="fa fa-pencil"></i> Sample Link 1</a></li>
+
+                                    <li><a href="#Sample9"><i class="fa fa-edit"></i> Sample Link 1</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="#Sample10"><i class="fa fa-user"></i>  Sample Link 1</a></li>
+
+                            <li><a href="#Sample11"><i class="fa fa-external-link"></i>  Sample Link 2</a></li>
+
+                            <li><a href="#Sample12"><i class="fa fa-bell"></i>  Sample Link 3</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-globe"></i>
+
+                            <span>Item 2</span>
+
+                            <span class="arrow"></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li><a href="#Sample13"><i class="fa fa-user"></i>  Sample Link 1</a></li>
+
+                            <li><a href="#Sample14"><i class="fa fa-external-link"></i>  Sample Link 1</a></li>
+
+                            <li><a href="#Sample15"><i class="fa fa-bell"></i>  Sample Link 1</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-folder-open"></i>
+
+                            <span>Item 3</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-user"></i>
+
+                    <span class="title">Login Options</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#Login1">Login Form 1</a>
+                    </li>
+
+                    <li>
+                        <a href="#Login2">Login Form 2</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-th"></i>
+
+                    <span class="title">Data Tables</span>
+
+                    <span class="selected"></span>
+
+                    <span class="arrow"></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#Basic">Basic Tables</a>
+                    </li>
+
+                    <li>
+                        <a href="#Responsive">Responsive Tables</a>
+                    </li>
+
+                    <li>
+                        <a href="#Managed">Managed Tables</a>
+                    </li>
+
+                    <li>
+                        <a href="#Editable">Editable Tables</a>
+                    </li>
+
+                    <li>
+                        <a href="#Advanced">Advanced Tables</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-file-text"></i>
+
+                    <span class="title">Portlets</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#General">General Portlets</a>
+                    </li>
+
+                    <li>
+                        <a href="#Portlets">Draggable Portlets</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);">
+                    <i class="fa fa-map-marker"></i>
+
+                    <span class="title">Maps</span>
+
+                    <span class="arrow "></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#Google">Google Maps</a>
+                    </li>
+
+                    <li>
+                        <a href="#Vector">Vector Maps</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="last">
+                <a href="#Visual">
+                    <i class="fa fa-bar-chart"></i>
+
+                    <span class="title">Visual Charts</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="page-content"></div>
+</div>
+
+<div class="footer">
+    <div class="footer-inner">
+        <span>2013 &copy; Metronic by keenthemes.Collect from </span>
+        <a href="http://www.cssmoban.com/" title="网站模板" target="_blank">网站模板</a>
+        <span>- More Templates </span>
+        <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
+    </div>
+
+    <div class="footer-tools">
+        <span class="go-top">
+            <i class="fa fa-angle-up"></i>
+        </span>
+    </div>
+</div>
+
+<script src="../support/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+
+<script src="../support/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+
+<script src="../support/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--[if lt IE 9]>
+
+<script src="../support/js/excanvas.min.js"></script>
+
+<script src="../support/js/respond.min.js"></script>
+
+<![endif]-->
+
+<script src="../support/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+<script src="../support/js/jquery.blockui.min.js" type="text/javascript"></script>
+
+<script src="../support/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+<script src="../support/js/jquery.uniform.min.js" type="text/javascript" ></script>
+
+<script type="text/javascript" src="../support/js/select2.min.js"></script>
+
+<script type="text/javascript" src="../support/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript" src="../support/js/DT_bootstrap.js"></script>
+
+<script type="text/javascript" src="../support/js/sepa.js"></script>
+
+<script type="text/javascript" src="../support/js/sepa.component.js"></script>
+
+<script type="text/javascript" src="index.js"></script>
+
+<script>
+
+jQuery(document).ready(function() {
+
+    function _calculateFixedSidebarViewportHeight() {
+        var sidebarHeight = $(window).height() - $('.header').height() + 1;
+        if ($('body').hasClass("page-footer-fixed")) {
+            sidebarHeight = sidebarHeight - $('.footer').height();
+        }
+
+        return sidebarHeight;
+    }
+
+    function handleSidebarAndContentHeight() {
+        var content = $('.page-content');
+        var sidebar = $('.page-sidebar');
+        var body = $('body');
+        var height;
+
+        if (body.hasClass("page-footer-fixed") === true && body.hasClass("page-sidebar-fixed") === false) {
+            var available_height = $(window).height() - $('.footer').height();
+            if (content.height() <  available_height) {
+                content.attr('style', 'min-height:' + available_height + 'px !important');
+            }
+        } else {
+            if (body.hasClass('page-sidebar-fixed')) {
+                height = _calculateFixedSidebarViewportHeight();
+            } else {
+                height = sidebar.height() + 20;
+            }
+            if (height >= content.height()) {
+                content.attr('style', 'min-height:' + height + 'px !important');
+            }
+        }
+    }
+
+    function handleFixedSidebar() {
+        var menu = $('.page-sidebar-menu');
+
+        if (menu.parent('.slimScrollDiv').length === 1) { // destroy existing instance before updating the height
+            menu.slimScroll({
+                destroy: true
+            });
+            menu.removeAttr('style');
+            $('.page-sidebar').removeAttr('style');
+        }
+
+        if ($('.page-sidebar-fixed').length === 0) {
+            handleSidebarAndContentHeight();
+            return;
+        }
+
+        if ($(window).width() >= 980) {
+            var sidebarHeight = _calculateFixedSidebarViewportHeight();
+
+            menu.slimScroll({
+                size: '7px',
+                color: '#a1b2bd',
+                opacity: .3,
+                //position: isRTL ? 'left' : ($('.page-sidebar-on-right').size() === 1 ? 'left' : 'right'),
+                position: $('.page-sidebar-on-right').length === 1 ? 'left' : 'right',
+                height: sidebarHeight,
+                allowPageScroll: false,
+                disableFadeOut: false
+            });
+            handleSidebarAndContentHeight();
+        }
+    }
+
+    function handleFixedSidebarHoverable() {
+        if ($('body').hasClass('page-sidebar-fixed') === false) {
+            return;
+        }
+
+        $('.page-sidebar').off('mouseenter').on('mouseenter', function () {
+            var body = $('body');
+
+            if ((body.hasClass('page-sidebar-closed') === false || body.hasClass('page-sidebar-fixed') === false) || $(this).hasClass('page-sidebar-hovering')) {
+                return;
+            }
+
+            body.removeClass('page-sidebar-closed').addClass('page-sidebar-hover-on');
+            $(this).addClass('page-sidebar-hovering');
+            $(this).animate({
+                width: 35
+            }, 400, '', function () {
+                $(this).removeClass('page-sidebar-hovering');
+            });
+        });
+
+        $('.page-sidebar').off('mouseleave').on('mouseleave', function () {
+            var body = $('body');
+
+            if ((body.hasClass('page-sidebar-hover-on') === false || body.hasClass('page-sidebar-fixed') === false) || $(this).hasClass('page-sidebar-hovering')) {
+                return;
+            }
+
+            $(this).addClass('page-sidebar-hovering');
+            $(this).animate({
+                width: 35
+            }, 400, '', function () {
+                $('body').addClass('page-sidebar-closed').removeClass('page-sidebar-hover-on');
+                $(this).removeClass('page-sidebar-hovering');
+            });
+        });
+    }
+
+    handleSidebarAndContentHeight(); // fix content height
+    handleFixedSidebar(); // reinitialize fixed sidebar
+    handleFixedSidebarHoverable(); // reinitialize fixed sidebar hover effect
+
+});
+
+</script>
+
+</body>
+
+</html>
