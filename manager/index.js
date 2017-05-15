@@ -132,7 +132,7 @@
     Column.create(['id', 'parentId', 'title', 'description', 'sort', 'createId', 'createTime', 'updateId',
         'updateTime', 'status']);
 
-    new sepa.EntitiesManager('Column', Column).save();
+    new sepa.EntitiesManager({id : 'Column', model : Column}).save();
 
     //文章
     var Article = new sepa.Class(sepa.BaseModel);
@@ -142,14 +142,14 @@
         'description', 'keyword', 'path', 'viewCount', 'createId', 'createTime', 'updateId', 'updateTime', 'status',
         'examineCommont', 'content']);
 
-    new sepa.EntitiesManager('Article', Article).save();
+    new sepa.EntitiesManager({id : 'Article', model : Article}).save();
 
     //资源集
     var ResourceAlbum = new sepa.Class(sepa.BaseModel);
     //id,资源类型,名称,描述,创建者ID,创建时间
     ResourceAlbum.create(['id', 'resourceType', 'name', 'description', 'creatorId', 'createTime']);
 
-    new sepa.EntitiesManager('ResourceAlbum', ResourceAlbum).save();
+    new sepa.EntitiesManager({id : 'ResourceAlbum', model : ResourceAlbum}).save();
 
     //资源
     var Resource = new sepa.Class(sepa.BaseModel);
@@ -157,34 +157,34 @@
     Resource.create(['id', 'resourceType', 'albumId', 'name', 'path', 'description', 'creatorId', 'createTime',
         'downloadCount']);
 
-    new sepa.EntitiesManager('Resource', Resource).save();
+    new sepa.EntitiesManager({id : 'Resource', model : Resource}).save();
 
     //模板
     var Template = new sepa.Class(sepa.BaseModel);
     //id,模板名称,占位符个数
     Template.create(['id', 'name', 'placeholderCount']);
 
-    new sepa.EntitiesManager('Template', Template).save();
+    new sepa.EntitiesManager({id : 'Template', model : Template}).save();
 
     //占位符
     var Placeholder = new sepa.Class(sepa.BaseModel);
     //id,模板ID,模板名称,占位符索引,资源类型
     Placeholder.create(['id', 'templateId', 'templateName', 'index', 'resourceType']);
 
-    new sepa.EntitiesManager('Placeholder', Placeholder).save();
+    new sepa.EntitiesManager({id : 'Placeholder', model : Placeholder}).save();
 
     //页面
     var Page = new sepa.Class(sepa.BaseModel);
     //id,hash索引,页面名称,模板名称,模板名称
     Page.create(['id', 'hashIndex', 'name', 'templateId', 'templateName']);
 
-    new sepa.EntitiesManager('Page', Page).save();
+    new sepa.EntitiesManager({id : 'Page', model : Page}).save();
 
     //页面占位符
     var PagePlaceholder = new sepa.Class(sepa.BaseModel);
     //id,页面ID,占位符ID,占位符索引,资源类型,引入组ID,引入组名称
     PagePlaceholder.create(['id', 'pageId', 'placeholderId', 'index', 'resourceType', 'groupId', 'groupName']);
 
-    new sepa.EntitiesManager('PagePlaceholder', PagePlaceholder).save();
+    new sepa.EntitiesManager({id : 'PagePlaceholder', model : PagePlaceholder}).save();
 
 })();
