@@ -109,6 +109,34 @@
 
         loadPage : function(path) {
             this.pageContainer.load(path);
+        },
+
+        //加载阴影
+        blockUI : function(el, centerY) {
+            this.$(el).block({
+                message: '<img src="../support/image/ajax-loading.gif" align="">',
+                centerY: centerY != undefined ? centerY : true,
+                css: {
+                    top: '10%',
+                    border: 'none',
+                    padding: '2px',
+                    backgroundColor: 'none'
+                },
+                overlayCSS: {
+                    backgroundColor: '#000',
+                    opacity: 0.05,
+                    cursor: 'wait'
+                }
+            });
+        },
+
+        //消除阴影
+        unblockUI : function (el) {
+            this.$(el).unblock({
+                onUnblock: function () {
+                    $(el).removeAttr("style");
+                }
+            });
         }
     });
 
