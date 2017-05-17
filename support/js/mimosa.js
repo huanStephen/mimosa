@@ -238,7 +238,7 @@
         Model : '',
 
         loadInfo : function() {
-
+            this.component('remote', ['getInfo']);
         },
 
         getInfoResult : function(result) {
@@ -323,7 +323,7 @@
         },
 
         backClick : function() {
-
+            history.back();
         }
     });
 

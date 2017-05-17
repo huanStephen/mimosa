@@ -44,7 +44,6 @@
 
         load : function() {
             this.loadList();
-            this.$('#portlet-config').modal('show');
         },
 
         addAfter : function() {
