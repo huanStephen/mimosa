@@ -56,6 +56,6 @@
 
     });
 
-    new ColumnController('div.container-fluid');
+    new ColumnController('div[data-page]');
 
 })();
