@@ -26,4 +26,34 @@
 			}]]>
 		</static>
 	</branch>
+
+	<branch path="/manager/column/getColumn" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "parentId" : 0, "title" : "测试内容", "description" : "测试描述"}
+				}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/column/addColumn" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/column/updateColumn" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
 </response>

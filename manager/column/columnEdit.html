@@ -12,7 +12,7 @@
                     <span class="fa fa-angle-right"></span>
                 </li>
 
-                <li><a href="#">添加</a></li>
+                <li><a href="javascript:void(0);">添加</a></li>
             </ul>
         </div>
     </div>
@@ -26,30 +26,33 @@
 
                 <div class="portlet-body form">
                     <div class="form-horizontal form-row-seperated">
-                        <div class="control-group">
+                        <div class="control-group" data-row>
                             <label class="control-label">栏目名称</label>
 
                             <div class="controls">
-                                <input type="text" placeholder="small" class="m-wrap span12" />
+                                <input type="text" class="m-wrap span12" data-field="title"/>
 
-                                <span class="help-inline"></span>
+                                <span class="help-inline" data-msg></span>
                             </div>
                         </div>
 
-                        <div class="control-group">
+                        <div class="control-group" data-row>
                             <label class="control-label">栏目描述</label>
 
                             <div class="controls">
-                                <input type="text" placeholder="medium" class="m-wrap span12" />
+                                <textarea class="m-wrap span12" data-field="description" style="resize:none;"></textarea>
 
-                                <span class="help-inline">This is inline help</span>
+                                <span class="help-inline" data-msg></span>
                             </div>
                         </div>
 
                         <div class="form-actions">
-                            <button type="submit" class="btn blue"><i class="fa fa-ok"></i> Save</button>
+                            <button type="submit" class="btn blue" data-operate="submit">
+                                <i class="fa fa-ok"></i>
+                                <span>提交</span>
+                            </button>
 
-                            <button type="button" class="btn">Cancel</button>
+                            <button type="button" class="btn" data-operate="back">返回</button>
                         </div>
                     </div>
                 </div>

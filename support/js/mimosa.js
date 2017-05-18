@@ -134,6 +134,8 @@
                 this[this.operateConfig.add.before].call(this, event);
             }
 
+            if(this.operateConfig.add.requireRowInfo)
+                new this.Model().saveSession('rowInfo');
             indexCtrl.loadPage(this.operateConfig.add.page);
 
             if(this.operateConfig.add.after) {
@@ -253,7 +255,7 @@
         renderEdit : function(model) {
             var attrs = this.Model._attributes;
             for(var i in attrs) {
-                var $field = row.find('*[data-field="' + attrs[i] + '"]');
+                var $field = this.$('*[data-field="' + attrs[i] + '"]');
                 if($field.length) {
                     var as = this.attrSetting(attrs[i]);
                     if('txt' == as)
@@ -286,10 +288,6 @@
         },
 
         submitClick : function() {
-            if(!this.info) {
-                this.info = new this.Model();
-            }
-
             var result = this.component('combVaildate', [this.info, this.vaildRole, function(errMsg) {
                 var $row = $(this).parents('*[data-row]');
                 if(errMsg) $row.addClass('error');
@@ -300,8 +298,8 @@
             if(this.submitBefore) this.submitBefore.call(this, this.info);
 
             if(result) {
-                if(this.info.id) {
-                    this.info.createRemote(this.submitConfig.addConfig.path, this.proxy(function(result) {
+                if(!this.info.id) {
+                    this.info.createRemote(this.submitConfig.addConfigPath, this.proxy(function(result) {
                         if(!result.errCode) {
                             alert('添加成功！');
                             this.backClick();
@@ -310,7 +308,7 @@
                         }
                     }));
                 } else {
-                    this.info.createRemote(this.submitConfig.updateConfig.path, this.proxy(function(result) {
+                    this.info.createRemote(this.submitConfig.updateConfigPath, this.proxy(function(result) {
                         if(!result.errCode) {
                             alert('更新成功！');
                             this.backClick();

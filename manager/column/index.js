@@ -6,9 +6,9 @@
 
     var ColumnEntity = new sepa.Class([Column.model, sepa.Model]);
 
-    var ColumnController = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement, sepa.CDomRenderRole, this.mimosa.ListTemplate]);
+    var ColumnListController = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement, sepa.CDomRenderRole, this.mimosa.ListTemplate]);
 
-    ColumnController.include({
+    ColumnListController.include({
 
         Model : ColumnEntity,
 
@@ -30,6 +30,7 @@
         operateConfig : {
             add : {
                 page : 'column/columnEdit.html',
+                requireRowInfo : true,
                 after : 'addAfter'
             },
             edit : {
@@ -56,6 +57,6 @@
 
     });
 
-    new ColumnController('div[data-page]');
+    new ColumnListController('div[data-page]');
 
 })();
