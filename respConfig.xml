@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response contextPath="/mimosa">
+	<branch path="/manager/column/getColumnList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "parentId" : 0, "title" : "测试内容", "createTime" : "2017-05-20 10:32:14"},
+						{"id" : 2, "parentId" : 0, "title" : "测试", "createTime" : "2017-05-20 10:32:14"},
+						{"id" : 3, "parentId" : 0, "title" : "introduce", "createTime" : "2017-05-20 10:32:14"},
+						{"id" : 4, "parentId" : 0, "title" : "introduce", "createTime" : "2017-05-20 10:32:14"},
+						{"id" : 5, "parentId" : 0, "title" : "introduce", "createTime" : "2017-05-20 10:32:14"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/column/deleteColumn" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : null
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/column/getColumn" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "parentId" : 0, "title" : "测试内容", "description" : "测试描述"}
+				}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/column/addColumn" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/column/updateColumn" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+</response>

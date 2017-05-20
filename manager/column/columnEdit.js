@@ -6,15 +6,22 @@
 
     var ColumnEntity = new sepa.Class([Column.model, sepa.Model]);
 
-    var ColumnListController = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement, sepa.CDomRenderRole,
-        this.mimosa.ListTemplate, sepa.CStorage]);
+    var ColumnEditController = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement, sepa.CDomRenderRole,
+        sepa.CVaildate, sepa.CCombVaildate, this.mimosa.EditTemplate, sepa.CStorage]);
 
-    ColumnListController.include({
+    ColumnEditController.include({
 
         Model : ColumnEntity,
 
         elements : {
-            'ul.breadcrumb' : 'navContainer'
+            //标题
+            'h3.page-title > span:first' : 't',
+            //导航
+            'ul.breadcrumb' : 'navContainer',
+            //标题
+            'input[data-field="title"]' : 'title',
+            //描述
+            'textarea[data-field="description"]' : 'description'
         },
 
         events : {
@@ -26,49 +33,40 @@
         },
 
         config : {
-            getList : {
-                path : 'column/getColumnList',
-                params : {
-                    parentId : 0
-                }
-            },
-            deleteRow : {
-                path : 'column/deleteColumn',
+            getInfo : {
+                path : 'column/getColumn',
                 params : {
                     columnId : 0
-                }
+                },
+                callback : 'getInfoResult'
             }
         },
 
-        operateConfig : {
-            add : {
-                page : 'column/columnEdit.html',
-                requireRowInfo : true,
-                before : 'addBefore'
-            },
-            entry : {
-                page : 'column/index.html',
-                requireRowInfo : false,
-                before : 'entryBefore'
-            },
-            edit : {
-                page : 'column/columnEdit.html',
-                requireRowInfo : true,
-                before : 'editBefore'
-            },
-            delete : {
-                before : 'deleteBefore',
-                warning : '确定删除该栏目？'
-            }
+        vaildRole : {
+            title : [['required', '请输入栏目标题！'],
+                ['maxlength', '栏目标题不能超过15个字！', 15]],
+            description : [['maxlength', '描述不能超过140个字！', 140]]
         },
 
-        level : ['0,主栏目'],
+        submitConfig : {
+            addConfigPath : 'column/addColumn',
+            updateConfigPath : 'column/updateColumn'
+        },
+
+        level : [],
 
         load : function() {
+            this.info = new ColumnEntity();
+            this.info.loadSession('rowInfo');
+            this.info.removeSession('rowInfo');
+
             this.renderNav();
 
-            this.config.getList.params.parentId = this.level[this.level.length - 1].split(',')[0];
-            this.loadList();
+            if(this.info.id) {
+                this.config.getInfo.params.columnId = this.info.id;
+                this.loadInfo();
+            }
+
         },
 
         renderNav : function() {
@@ -88,12 +86,8 @@
                     $nav.children('i').addClass('fa-angle-right');
                 }
 
-                if(i == lv.length - 1) {
-                    $title = this.component('element', ['span']).clone();
-                } else {
-                    $title = this.component('element', ['a']).clone();
-                    $title.attr('href', 'javascript:void(0);');
-                }
+                $title = this.component('element', ['a']).clone();
+                $title.attr('href', 'javascript:void(0);');
 
                 $title.attr('data-parentid', spl[0]).text(spl[1]);
 
@@ -101,6 +95,21 @@
 
                 this.navContainer.append($nav);
             }
+
+            $nav = this.navEl.clone();
+            $nav.children('i').addClass('fa-angle-right');
+            $title = this.component('element', ['span']).clone();
+            if(this.info.id) {
+                this.t.text('编辑');
+                $title.text('编辑');
+            } else {
+                this.t.text('添加');
+                $title.text('添加');
+            }
+            $nav.append($title);
+
+            this.navContainer.append($nav);
+
             this.level = lv;
         },
 
@@ -119,25 +128,13 @@
             }
         },
 
-        addBefore : function() {
+        submitBefore : function() {
             this.component('saveSession', ['level', this.level]);
         },
 
-        entryBefore : function(event) {
-            var id = this.getRowId(event);
-            var title = this.$(event.target).parents('tr').find('*[data-field="title"]').text();
-
-            this.level.push(id + ',' + title);
-
+        backClick : function() {
             this.component('saveSession', ['level', this.level]);
-        },
-
-        editBefore : function() {
-            this.component('saveSession', ['level', this.level]);
-        },
-
-        deleteBefore : function(event) {
-            this.config.deleteRow.params.columnId = this.getRowId(event);
+            indexCtrl.loadPage('column/index.html');
         },
 
         navBlk : function() {
@@ -146,6 +143,6 @@
 
     });
 
-    new ColumnListController('div[data-page]');
+    new ColumnEditController('div[data-page]');
 
 })();
