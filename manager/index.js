@@ -19,7 +19,8 @@
 
         _hashMap : {
             'home' : 'home/index.html',
-            'column' : 'column/index.html'
+            'column' : 'column/index.html',
+            'article' : 'article/index.html'
         },
 
         load : function() {

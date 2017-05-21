@@ -10,7 +10,7 @@
     _ListTemplate.include({
         elements : {
             //阴影面积
-            'div.portlet' : 'shadow',
+            'div.listshadow' : 'shadow',
             //列表容器
             '*[data-index="main"]' : 'listContainer',
             //克隆行

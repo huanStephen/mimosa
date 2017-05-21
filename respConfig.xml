@@ -56,4 +56,60 @@
 			}]]>
 		</static>
 	</branch>
+
+	<branch path="/manager/article/getColumnList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "name" : "测试内容", "children" : [
+							{"id" : 2, "name" : "测试", "children" : []},
+							{"id" : 3, "name" : "introduce", "children" : []},
+							{"id" : 4, "name" : "introduce1", "children" : [
+								{"id" : 5, "name" : "introduce2", "children" : []}
+							]}
+						]}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/article/getArticleList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "title" : "中共中央总书记习近平电贺吴敦义当选中国国民党主席",
+							"createTime" : "2017-01-05 10:13:57", "status" : 1},
+						{"id" : 2, "title" : "李克强总理一句鼓励 山西官地矿工变身“双创”秀才",
+							"createTime" : "2017-01-05 10:13:57", "status" : 2},
+						{"id" : 3, "title" : "中国战机在美军机头上侧空翻 就该这姿势",
+							"createTime" : "2017-01-05 10:13:57", "status" : 3},
+						{"id" : 4, "title" : "吴敦义胜选后提四大政策 布局2018剑指2020",
+							"createTime" : "2017-01-05 10:13:57", "status" : 4},
+						{"id" : 5, "title" : "百年前健身旧照曝光：男女着正装锻炼",
+							"createTime" : "2017-01-05 10:13:57", "status" : 2}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/article/getArticle" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "title" : "中共中央总书记习近平电贺吴敦义当选中国国民党主席", "sort" : 0,
+						"articleType" : 2, "attribute" : 2, "source" : "新华网", "author" : "张三",
+						"description" : "这是一段新闻", "keyword" : "关键字", "createTime" : "2017-01-05 10:13:57",
+						"content" : "中共中央总书记习近平电贺吴敦义当选中国国民党主席中共中央总书记习近平电贺吴敦义当选中国国民党主席中共中央总书记习近平电贺吴敦义当选中国国民党主席", "status" : 1}
+				}
+			}]]>
+		</static>
+	</branch>
 </response>
