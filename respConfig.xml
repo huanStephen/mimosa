@@ -112,4 +112,30 @@
 			}]]>
 		</static>
 	</branch>
+
+	<branch path="/manager/resource/getResourceAlbumList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "name" : "测试集一", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 2, "name" : "测试集二", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 3, "name" : "测试集三", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 4, "name" : "测试集四", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 5, "name" : "测试集五", "createTime" : "2017-01-05 10:13:57"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/resource/deleteResourceAlbum" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
 </response>
