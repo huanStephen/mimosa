@@ -168,4 +168,39 @@
 			}]]>
 		</static>
 	</branch>
+
+	<branch path="/manager/resource/getResourceList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "name" : "图一", "resourceType" : "image", "path" : "../support/image/image1.jpg", "description" : "描述"},
+						{"id" : 2, "name" : "图二", "resourceType" : "image", "path" : "../support/image/image2.jpg", "description" : "描述"},
+						{"id" : 3, "name" : "图三", "resourceType" : "image", "path" : "../support/image/image3.jpg", "description" : "描述"},
+						{"id" : 4, "name" : "图四", "resourceType" : "image", "path" : "../support/image/image4.jpg", "description" : "描述"},
+						{"id" : 5, "name" : "图五", "resourceType" : "image", "path" : "../support/image/preview_02.png", "description" : "描述"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/resource/updateResource" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/resource/deleteResource" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
 </response>
