@@ -119,7 +119,20 @@
                 this.picPos.after($div);
             }
 
-            this.$('a.fancybox-button').fancybox();
+            var $fancybox = this.$('a.fancybox-button');
+            if($fancybox.length > 0) {
+                $fancybox.fancybox({
+                    groupAttr: 'data-rel',
+                    prevEffect: 'none',
+                    nextEffect: 'none',
+                    closeBtn: true,
+                    helpers: {
+                        title: {
+                            type: 'inside'
+                        }
+                    }
+                });
+            }
         },
 
         selFileClick : function() {
