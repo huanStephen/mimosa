@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <h3>attachment</h3>
-</body>
-</html>
+<div class="container-fluid" data-page>
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title"></h3>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="portlet box blue listshadow">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cubes"></i>
+                        <span>音频列表</span>
+                    </div>
+                </div>
+
+                <div class="portlet-body">
+                    <div class="clearfix pull-right">
+                        <input class="m-wrap medium" type="text" data-operate="filename" disabled="disabled">
+                        <div class="btn-group">
+                            <button class="btn dropdown-toggle blue" data-operate="selFile">选择</button>
+                            <button class="btn dropdown-toggle green" data-operate="upload">上传</button>
+                        </div>
+                        <input type="file" class="uploadResource" name="uploadResource" style="display: none;"/>
+                    </div>
+
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="10%">编号</th>
+
+                            <th width="20%">名称</th>
+
+                            <th width="20%">描述</th>
+
+                            <th width="20%">创建时间</th>
+
+                            <th width="30%">操作</th>
+                        </tr>
+                        </thead>
+
+                        <tbody data-index="main">
+                        <tr class="odd gradeX" data-clone>
+                            <td data-field="id"></td>
+
+                            <td data-field="name"></td>
+
+                            <td data-field="description"></td>
+
+                            <td data-field="createTime"></td>
+
+                            <td>
+                                <a href="javascript:void(0);" class="btn mini green" data-operate="download">
+                                    <i class="fa fa-download"></i>
+                                    <span>下载</span>
+                                </a>
+
+                                <a href="javascript:void(0);" class="btn mini yellow" data-operate="edit">
+                                    <i class="fa fa-edit"></i>
+                                    <span>编辑</span>
+                                </a>
+
+                                <a href="javascript:void(0);" class="btn mini red" data-operate="delete">
+                                    <i class="fa fa-trash"></i>
+                                    <span>删除</span>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="resource/attachmentList.js"></script>
