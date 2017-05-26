@@ -50,7 +50,7 @@
             },
             delete : {
                 before : 'deleteBefore',
-                warning : 'È·¶¨É¾³ı¸Ã×ÊÔ´¼¯£¿'
+                warning : 'ç¡®å®šåˆ é™¤è¯¥èµ„æºé›†ï¼Ÿ'
             }
         },
 
@@ -58,16 +58,16 @@
             this.resourceType = location.hash.slice(1);
 
             if(this.resourceType == 'image') {
-                this.title.text('Í¼Æ¬×ÊÔ´¼¯');
+                this.title.text('å›¾ç‰‡èµ„æºé›†');
             }
             if(this.resourceType == 'sound') {
-                this.title.text('ÒôÆµ×ÊÔ´¼¯');
+                this.title.text('éŸ³é¢‘èµ„æºé›†');
             }
             if(this.resourceType == 'video') {
-                this.title.text('ÊÓÆµ×ÊÔ´¼¯');
+                this.title.text('è§†é¢‘èµ„æºé›†');
             }
             if(this.resourceType == 'attachment') {
-                this.title.text('¸½¼ş×ÊÔ´¼¯');
+                this.title.text('é™„ä»¶èµ„æºé›†');
             }
 
             this.config.getList.params.resourceType = this.resourceType;
