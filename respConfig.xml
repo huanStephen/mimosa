@@ -120,10 +120,10 @@
 				"errMsg" : "",
 				"data" : {
 					"list" : [
-						{"id" : 1, "name" : "测试集一", "resourceType" : "image", "createTime" : "2017-01-05 10:13:57"},
-						{"id" : 2, "name" : "测试集二", "resourceType" : "image", "createTime" : "2017-01-05 10:13:57"},
-						{"id" : 3, "name" : "测试集三", "resourceType" : "image", "createTime" : "2017-01-05 10:13:57"},
-						{"id" : 4, "name" : "测试集四", "resourceType" : "image", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 1, "name" : "图集一", "resourceType" : "image", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 2, "name" : "音频集二", "resourceType" : "sound", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 3, "name" : "视频集三", "resourceType" : "video", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 4, "name" : "附件集四", "resourceType" : "attachment", "createTime" : "2017-01-05 10:13:57"},
 						{"id" : 5, "name" : "测试集五", "resourceType" : "image", "createTime" : "2017-01-05 10:13:57"}
 				]}
 			}]]>
@@ -176,11 +176,11 @@
 				"errMsg" : "",
 				"data" : {
 					"list" : [
-						{"id" : 1, "name" : "图一", "resourceType" : "image", "path" : "../support/image/image1.jpg", "description" : "描述"},
-						{"id" : 2, "name" : "图二", "resourceType" : "image", "path" : "../support/image/image2.jpg", "description" : "描述"},
-						{"id" : 3, "name" : "图三", "resourceType" : "image", "path" : "../support/image/image3.jpg", "description" : "描述"},
-						{"id" : 4, "name" : "图四", "resourceType" : "image", "path" : "../support/image/image4.jpg", "description" : "描述"},
-						{"id" : 5, "name" : "图五", "resourceType" : "image", "path" : "../support/image/preview_02.png", "description" : "描述"}
+						{"id" : 1, "name" : "图一", "resourceType" : "image", "path" : "../support/image/image1.jpg", "description" : "描述", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 2, "name" : "图二", "resourceType" : "image", "path" : "../support/image/image2.jpg", "description" : "描述", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 3, "name" : "图三", "resourceType" : "image", "path" : "../support/image/image3.jpg", "description" : "描述", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 4, "name" : "图四", "resourceType" : "image", "path" : "../support/image/image4.jpg", "description" : "描述", "createTime" : "2017-01-05 10:13:57"},
+						{"id" : 5, "name" : "图五", "resourceType" : "image", "path" : "../support/image/preview_02.png", "description" : "描述", "createTime" : "2017-01-05 10:13:57"}
 				]}
 			}]]>
 		</static>
