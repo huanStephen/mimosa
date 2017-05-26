@@ -1,9 +1,7 @@
 <div class="container-fluid" data-page>
     <div class="row-fluid">
         <div class="span12">
-            <h3 class="page-title">栏目</h3>
-
-            <ul class="breadcrumb"></ul>
+            <h3 class="page-title">模板导入</h3>
         </div>
     </div>
 
@@ -12,27 +10,18 @@
             <div class="portlet box light-grey listshadow">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-columns"></i>
-                        <span>栏目列表</span>
+                        <i class="fa fa-reply"></i>
+                        <span>模板列表</span>
                     </div>
                 </div>
 
                 <div class="portlet-body">
-                    <div class="clearfix">
-                        <div class="btn-group">
-                            <button class="btn green" data-operate="add">
-                                <span>添加</span>
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th width="10%">编号</th>
 
-                                <th width="30%">栏目名称</th>
+                                <th width="30%">名称</th>
 
                                 <th width="30%">创建时间</th>
 
@@ -44,7 +33,7 @@
                             <tr class="odd gradeX" data-clone>
                                 <td data-field="id"></td>
 
-                                <td><a href="javascript:void(0);" data-field="title" data-operate="entry"></a></td>
+                                <td><a href="javascript:void(0);" data-field="name" data-operate="entry"></a></td>
 
                                 <td data-field="createTime"></td>
 
@@ -66,4 +55,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="column/index.js"></script>
+<script type="text/javascript" src="template/templateImport.js"></script>

@@ -1,0 +1,274 @@
+<div class="container-fluid" data-page>
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">
+                <span></span>
+                <span>文章</span>
+            </h3>
+
+            <ul class="breadcrumb"></ul>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="portlet box light-grey">
+                <div class="portlet-title">
+                    <div class="caption"><i class="fa fa-columns"></i>文章字段</div>
+                </div>
+
+                <div class="portlet-body form">
+                    <div class="form-horizontal form-row-seperated">
+                        <div class="control-group" data-row>
+                            <label class="control-label">标题</label>
+
+                            <div class="controls">
+                                <input type="text" class="m-wrap span12" data-field="title"/>
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">排序</label>
+
+                            <div class="controls">
+                                <input type="text" class="m-wrap span12" data-field="sort"/>
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">文章类型</label>
+
+                            <div class="controls">
+                                <select class="m-wrap span12" data-field="articleType">
+                                    <option value="1">文章</option>
+                                    <option value="2">文本</option>
+                                    <option value="3">图片</option>
+                                    <option value="4">音频</option>
+                                    <option value="5">视频</option>
+                                </select>
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">文章属性</label>
+
+                            <div class="controls">
+                                <select class="m-wrap span12" data-field="attribute">
+                                    <option value="1">图片</option>
+                                    <option value="2">推荐</option>
+                                    <option value="3">幻灯</option>
+                                    <option value="4">头条</option>
+                                </select>
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">缩略图</label>
+
+                            <div class="controls">
+                                <input type="hidden" data-field="thumbnails" />
+                                <div class="thumbnail" style="width: 291px; height: 170px;">
+                                    <img src="">
+                                </div>
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+
+                            <div class="controls">
+                                <button class="btn blue" data-toggle="modal" data-target="#thumbnailModal">
+                                    <i class="fa fa-picture-o"></i>
+                                    <span>选择</span>
+                                </button>
+                                <button class="btn red thumDelete">
+                                    <i class="fa fa-trash"></i>
+                                    <span>删除</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">来源</label>
+
+                            <div class="controls">
+                                <input type="text" class="m-wrap span12" data-field="source">
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">作者</label>
+
+                            <div class="controls">
+                                <input type="text" class="m-wrap span12" data-field="author">
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">描述</label>
+
+                            <div class="controls">
+                                <textarea class="m-wrap span12" data-field="description" style="resize:none;"></textarea>
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">关键字</label>
+
+                            <div class="controls">
+                                <input type="text" class="m-wrap span12" data-field="keyword">
+
+                                <span class="help-inline" data-msg></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" data-row>
+                            <label class="control-label">内容</label>
+
+                            <div class="controls" style="margin-bottom: 10px;">
+                                <button class="btn btn-default" data-toggle="modal" data-target="#imageModal">
+                                    <i class="fa fa-image"></i>
+                                    <span>图片库</span>
+                                </button>
+                                <button class="btn btn-default" data-toggle="modal" data-target="#soundModal">
+                                    <i class="fa fa-music"></i>
+                                    <span>音频库</span>
+                                </button>
+                                <button class="btn btn-default" data-toggle="modal" data-target="#videoModal">
+                                    <i class="fa fa-video-camera"></i>
+                                    <span>视频库</span>
+                                </button>
+                                <button class="btn btn-default" data-toggle="modal" data-target="#attachmentModal">
+                                    <i class="fa fa-cubes"></i>
+                                    <span>附件库</span>
+                                </button>
+                            </div>
+
+                            <div class="controls">
+                                <script id="container" name="content" type="text/plain" class="m-wrap span12" style="height:300px;"></script>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn yellow" data-common="saveDraft">保存草稿</button>
+
+                            <button type="button" class="btn green" data-common="submit">
+                                <i class="icon-ok"></i>
+                                <span>提交</span>
+                            </button>
+
+                            <a class="btn" href="javascript:history.back(-1);">返回</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态对话框 -->
+    <div class="modal fade" id="thumbnailModal" style="width: 800px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">选择缩略图</h4>
+                    <select class="m-wrap span12 thumbnailSelAlbum"></select>
+                </div>
+                <div class="modal-body" style="max-height: 400px; overflow-y :auto;"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="imageModal" style="width: 800px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">插入图片</h4>
+                    <select class="m-wrap span12 imageSelAlbum"></select>
+                </div>
+                <div class="modal-body" style="max-height: 400px; overflow-y :auto;"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="soundModal" style="width: 800px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">插入音频</h4>
+                    <select class="m-wrap span12 soundSelAlbum"></select>
+                </div>
+                <div class="modal-body" style="max-height: 400px; overflow-y :auto;">
+                    <table class="table table-striped">
+                        <thead>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>试听</th>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="videoModal" style="width: 800px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">插入视频</h4>
+                    <select class="m-wrap span12 videoSelAlbum"></select>
+                </div>
+                <div class="modal-body" style="max-height: 400px; overflow-y :auto;"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="attachmentModal" style="width: 800px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">插入附件</h4>
+                    <select class="m-wrap span12 attachmentSelAlbum"></select>
+                </div>
+                <div class="modal-body" style="max-height: 400px; overflow-y :auto;">
+                    <table class="table table-striped">
+                        <thead>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>描述</th>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="article/articleEdit.js"></script>

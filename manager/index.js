@@ -19,7 +19,13 @@
 
         _hashMap : {
             'home' : 'home/index.html',
-            'column' : 'column/index.html'
+            'column' : 'column/index.html',
+            'article' : 'article/index.html',
+            'image' : 'resource/index.html',
+            'sound' : 'resource/index.html',
+            'video' : 'resource/index.html',
+            'attachment' : 'resource/index.html',
+            'templateImport' : 'template/templateImport.html'
         },
 
         load : function() {
