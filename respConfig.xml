@@ -277,7 +277,7 @@
 		</static>
 	</branch>
 
-	<branch path="/manager/template/addTemplateHolder" type="post">
+	<branch path="/manager/template/addTemplatePlaceholder" type="post">
 		<static>
 			<![CDATA[{
 				"errCode" : 0,
@@ -286,11 +286,23 @@
 		</static>
 	</branch>
 
-	<branch path="/manager/template/updateTemplateHolder" type="post">
+	<branch path="/manager/template/updateTemplatePlaceholder" type="post">
 		<static>
 			<![CDATA[{
 				"errCode" : 0,
 				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/getTemplatePlaceholder" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "templateId" : 1, "templateName" : "index.html", "index" : "main", "resourceType" : "article"}
+				}
 			}]]>
 		</static>
 	</branch>

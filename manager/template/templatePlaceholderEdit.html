@@ -3,10 +3,10 @@
         <div class="span12">
             <h3 class="page-title">
                 <span></span>
-                <span>栏目</span>
+                <span>占位符</span>
             </h3>
 
-            <ul class="breadcrumb"></ul>
+            <!--<ul class="breadcrumb"></ul>-->
         </div>
     </div>
 
@@ -14,26 +14,33 @@
         <div class="span12">
             <div class="portlet box light-grey">
                 <div class="portlet-title">
-                    <div class="caption"><i class="fa fa-columns"></i>栏目字段</div>
+                    <div class="caption"><i class="fa fa-flag"></i>占位符字段</div>
                 </div>
 
                 <div class="portlet-body form">
                     <div class="form-horizontal form-row-seperated">
                         <div class="control-group" data-row>
-                            <label class="control-label">栏目名称</label>
+                            <label class="control-label">索引</label>
 
                             <div class="controls">
-                                <input type="text" class="m-wrap span12" data-field="title"/>
+                                <input type="text" class="m-wrap span12" data-field="index"/>
 
                                 <span class="help-inline" data-msg></span>
                             </div>
                         </div>
 
                         <div class="control-group" data-row>
-                            <label class="control-label">栏目描述</label>
+                            <label class="control-label">资源类型</label>
 
                             <div class="controls">
-                                <textarea class="m-wrap span12" data-field="description" style="resize:none;"></textarea>
+                                <select class="m-wrap span12" data-field="resourceType">
+                                    <option value="column">栏目</option>
+                                    <option value="article">文章</option>
+                                    <option value="image">图片</option>
+                                    <option value="sound">音频</option>
+                                    <option value="video">视频</option>
+                                    <option value="attachment">附件</option>
+                                </select>
 
                                 <span class="help-inline" data-msg></span>
                             </div>
