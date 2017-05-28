@@ -2,92 +2,142 @@
 
     var sepa = org.eocencle.sepa;
 
-    var ResourceAlbum = sepa.EntitiesManager.find('ResourceAlbum');
+    var Template = sepa.EntitiesManager.find('Template');
 
-    var ResourceAlbumEntity = new sepa.Class([ResourceAlbum.model, sepa.Model]);
+    var TemplateEntity = new sepa.Class([Template.model, sepa.Model]);
 
-    var ResourceAlbumListController = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement, sepa.CDomRenderRole,
-        this.mimosa.ListTemplate, sepa.CStorage]);
+    var TemplateImportListController = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement, sepa.CDomRenderRole]);
 
-    ResourceAlbumListController.include({
-
-        Model : ResourceAlbumEntity,
+    TemplateImportListController.include({
 
         elements : {
-            'h3.page-title' : 'title'
+            //加载阴影
+            'div.listshadow' : 'listshadow',
+            //列表容器
+            '*[data-index="main"]' : 'listContainer',
+            //克隆行
+            '*[data-clone]' : 'cloneRow'
+        },
+
+        events : {
+            'click a[data-operate="import"]' : 'importClick',
+            'click a[data-operate="delete"]' : 'deleteClick'
         },
 
         config : {
-            getList : {
-                path : 'resource/getResourceAlbumList',
-                params : {
-                    resourceType : ''
-                }
+            getTemplateList : {
+                path : 'template/getTemplateList',
+                callback : 'getTemplateListResult'
             },
-            deleteRow : {
-                path : 'resource/deleteResourceAlbum',
+            deleteTemplate : {
+                path : 'template/deleteTemplate',
                 params : {
-                    resourceAlbumId : 0
-                }
+                    templateId : 0
+                },
+                callback : 'deleteTemplateResult'
             }
         },
 
-        operateConfig : {
-            add : {
-                page : 'resource/resourceAlbumEdit.html',
-                requireRowInfo : false,
-                before : 'addBefore'
-            },
-            entry : {
-                page : '',
-                requireRowInfo : true,
-                before : 'entryBefore'
-            },
-            edit : {
-                page : 'resource/resourceAlbumEdit.html',
-                requireRowInfo : true,
-                before : 'editBefore'
-            },
-            delete : {
-                before : 'deleteBefore',
-                warning : '确定删除该资源集？'
-            }
+        blocks : {
+            errBlk : 'errEl'
         },
 
         load : function() {
-            this.resourceType = location.hash.slice(1);
-
-            if(this.resourceType == 'image') {
-                this.title.text('图片资源集');
-            }
-            if(this.resourceType == 'sound') {
-                this.title.text('音频资源集');
-            }
-            if(this.resourceType == 'video') {
-                this.title.text('视频资源集');
-            }
-            if(this.resourceType == 'attachment') {
-                this.title.text('附件资源集');
-            }
-
-            this.config.getList.params.resourceType = this.resourceType;
-            this.loadList();
+            this.component('remote', ['getTemplateList']);
+            indexCtrl.blockUI(this.listshadow);
         },
 
-        addBefore : function() {
-            new ResourceAlbumEntity({id : 0, resourceType : this.resourceType}).saveSession('rowInfo');
+        getTemplateListResult : function(result) {
+            indexCtrl.unblockUI(this.listshadow);
+            if(!result.errCode) {
+                this.renderList(result.data.list);
+            } else {
+                console.error(result.errMsg);
+            }
         },
 
-        entryBefore : function(event) {
-            this.operateConfig.entry.page = 'resource/' + this.resourceType + 'List.html';
+        renderList : function(list) {
+            if(list.length) {
+                this.listContainer.empty();
+
+                var fieldNames = [];
+
+                this.cloneRow.find('*[data-field]').each(function(idx, el) {
+                    fieldNames.push($(el).data('field'));
+                });
+
+                for(var i in list) {
+                    var row = this.cloneRow.clone();
+
+                    for(var j in fieldNames) {
+                        var $field = row.find('*[data-field="' + fieldNames[j] + '"]');
+
+                        row.attr('data-id', list[i].id);
+
+                        this.component('domRenderRole', [false, $field, list[i][fieldNames[j]]]);
+                    }
+
+                    if(list[i].remark) {
+                        var remark = this.errEl.clone().text(list[i].remark);
+                        row.children('td:last').append(remark);
+                    }
+
+                    this.listContainer.append(row);
+                }
+            } else {
+                var size = this.cloneRow.children().length;
+                var $emptyRow = this.component('element', ['td']).clone().attr('colspan', size).text('没有检索到任何数据！');
+                this.cloneRow.empty().append($emptyRow);
+            }
         },
 
-        deleteBefore : function(event) {
-            this.config.deleteRow.params.resourceAlbumId = this.getRowId(event);
+        importClick : function(event) {
+            var id = this.$(event.target).parents('tr').data('id');
+            if(id) {
+                alert('模板已导入！');
+            } else {
+                var template = new TemplateEntity();
+                template.id = id;
+                template.name = this.$(event.target).parents('tr').find('*[data-field="templateName"]').text();
+                template.createRemote('template/addTemplate', this.proxy(function(result) {
+                    if(!result.errCode) {
+                        alert('导入模板成功！');
+                        this.component('remote', ['getTemplateList']);
+                        indexCtrl.blockUI(this.listshadow);
+                    } else {
+                        console.error(result.errMsg);
+                    }
+                }));
+            }
+        },
+
+        deleteClick : function(event) {
+            var id = this.$(event.target).parents('tr').data('id');
+            if(id) {
+                if(confirm("确定要删除该模板？")) {
+                    this.config.deleteTemplate.params.templateId = id;
+                    this.component('remote', ['deleteTemplate']);
+                }
+            } else {
+                alert('模板未导入！');
+            }
+        },
+
+        deleteTemplateResult : function(result) {
+            if(!result.errCode) {
+                this.component('remote', ['getTemplateList']);
+                indexCtrl.blockUI(this.listshadow);
+            } else {
+                console.error(result.errMsg);
+            }
+        },
+
+        errBlk : function() {
+            return '<div class="alert-error"></div>';
         }
 
     });
 
-    new ResourceAlbumListController('div[data-page]');
+    new TemplateImportListController('div[data-page]');
 
 })();
