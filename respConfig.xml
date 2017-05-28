@@ -204,7 +204,7 @@
 		</static>
 	</branch>
 
-	<branch path="/manager/template/getTemplateList" type="get">
+	<branch path="/manager/template/getAllTemplateList" type="get">
 		<static>
 			<![CDATA[{
 				"errCode" : 0,
@@ -230,6 +230,63 @@
 	</branch>
 
 	<branch path="/manager/template/deleteTemplate" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/getTemplateList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "name" : "index.html", "placeholderCount" : 5},
+						{"id" : 2, "name" : "home.html", "placeholderCount" : 2},
+						{"id" : 3, "name" : "image.html", "placeholderCount" : 0}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/getTemplateHolderList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "templateId" : 1, "templateName" : "index.html", "index" : "main", "resourceType" : "article"},
+						{"id" : 2, "templateId" : 1, "templateName" : "index.html", "index" : "list", "resourceType" : "article"},
+						{"id" : 3, "templateId" : 1, "templateName" : "index.html", "index" : "edit", "resourceType" : "article"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/deleteTemplateHolder" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/addTemplateHolder" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/updateTemplateHolder" type="post">
 		<static>
 			<![CDATA[{
 				"errCode" : 0,

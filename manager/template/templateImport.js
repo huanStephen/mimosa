@@ -26,7 +26,7 @@
 
         config : {
             getTemplateList : {
-                path : 'template/getTemplateList',
+                path : 'template/getAllTemplateList',
                 callback : 'getTemplateListResult'
             },
             deleteTemplate : {
