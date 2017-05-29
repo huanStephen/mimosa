@@ -26,7 +26,8 @@
             'video' : 'resource/index.html',
             'attachment' : 'resource/index.html',
             'templateImport' : 'template/templateImport.html',
-            'templateConfig' : 'template/templateConfig.html'
+            'templateConfig' : 'template/templateConfig.html',
+            'page' : 'page/index.html'
         },
 
         load : function() {

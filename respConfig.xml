@@ -306,4 +306,58 @@
 			}]]>
 		</static>
 	</branch>
+
+	<branch path="/manager/page/getPageList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "hashIndex" : "index", "name" : "框架页", "templateId" : 1, "templateName" : "index.html"},
+						{"id" : 2, "hashIndex" : "home", "name" : "主页", "templateId" : 2, "templateName" : "home.html"},
+						{"id" : 3, "hashIndex" : "product", "name" : "产品页", "templateId" : 3, "templateName" : "product.html"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/deletePage" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/getPage" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "hashIndex" : "index", "name" : "框架页", "templateId" : 2, "templateName" : "index.html"}
+				}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/addPage" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/updatePage" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
 </response>
