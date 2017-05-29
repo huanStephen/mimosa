@@ -218,9 +218,16 @@
 
     //页面占位符
     var PagePlaceholder = new sepa.Class(sepa.BaseModel);
-    //id,页面ID,占位符ID,占位符索引,资源类型,引入组ID,引入组名称,占位符配置
-    PagePlaceholder.create(['id', 'pageId', 'placeholderId', 'index', 'resourceType', 'groupId', 'groupName', 'config']);
+    //id,页面ID,占位符ID,占位符索引,资源类型,引入组ID,引入组名称,详细配置
+    PagePlaceholder.create(['id', 'pageId', 'placeholderId', 'index', 'resourceType', 'groupId', 'groupName', 'detailConfig']);
 
     new sepa.EntitiesManager({id : 'PagePlaceholder', model : PagePlaceholder}).save();
+
+    //模板
+    var SelectNode = new sepa.Class(sepa.BaseModel);
+    //id,名称
+    SelectNode.create(['id', 'name']);
+
+    new sepa.EntitiesManager({id : 'SelectNode', model : SelectNode}).save();
 
 })();

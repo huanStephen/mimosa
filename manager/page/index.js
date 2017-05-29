@@ -31,7 +31,7 @@
                 requireRowInfo : true
             },
             entry : {
-                page : 'page/pageConfig.html',
+                page : 'page/pagePlaceholderList.html',
                 requireRowInfo : true
             },
             edit : {
