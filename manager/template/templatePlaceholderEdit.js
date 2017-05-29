@@ -61,8 +61,11 @@
             //this.renderNav();
 
             if(this.info.id) {
+                this.t.text('编辑');
                 this.config.getInfo.params.placeholderId = this.info.id;
                 this.loadInfo();
+            } else {
+                this.t.text('添加');
             }
 
         },
