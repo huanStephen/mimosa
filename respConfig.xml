@@ -203,4 +203,203 @@
 			}]]>
 		</static>
 	</branch>
+
+	<branch path="/manager/template/getAllTemplateList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "name" : "index.html", "templateName" : "index.html", "remark" : ""},
+						{"id" : 2, "name" : "home.html", "templateName" : "home.html", "remark" : ""},
+						{"id" : 0, "name" : "", "templateName" : "product.html", "remark" : ""},
+						{"id" : 3, "name" : "image.html", "templateName" : "", "remark" : "模板不存在！"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/addTemplate" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/deleteTemplate" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/getTemplateList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "name" : "index.html", "placeholderCount" : 5},
+						{"id" : 2, "name" : "home.html", "placeholderCount" : 2},
+						{"id" : 3, "name" : "image.html", "placeholderCount" : 0}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/getTemplateHolderList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "templateId" : 1, "templateName" : "index.html", "index" : "main", "resourceType" : "article"},
+						{"id" : 2, "templateId" : 1, "templateName" : "index.html", "index" : "list", "resourceType" : "article"},
+						{"id" : 3, "templateId" : 1, "templateName" : "index.html", "index" : "edit", "resourceType" : "article"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/deleteTemplateHolder" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/addTemplatePlaceholder" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/updateTemplatePlaceholder" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/template/getTemplatePlaceholder" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "templateId" : 1, "templateName" : "index.html", "index" : "main", "resourceType" : "article"}
+				}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/getPageList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "hashIndex" : "index", "name" : "框架页", "templateId" : 1, "templateName" : "index.html"},
+						{"id" : 2, "hashIndex" : "home", "name" : "主页", "templateId" : 2, "templateName" : "home.html"},
+						{"id" : 3, "hashIndex" : "product", "name" : "产品页", "templateId" : 3, "templateName" : "product.html"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/deletePage" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/getPage" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "hashIndex" : "index", "name" : "框架页", "templateId" : 2, "templateName" : "index.html"}
+				}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/addPage" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/updatePage" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/getPagePlaceholderList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "pageId" : 1, "index" : "main", "groupName" : "公司新闻", "index" : "main", "resourceType" : "article"},
+						{"id" : 2, "pageId" : 1, "index" : "list", "groupName" : "图集一", "resourceType" : "image"},
+						{"id" : 3, "pageId" : 1, "index" : "edit", "groupName" : "公司介绍", "resourceType" : "column"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/getGroupContentList" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"list" : [
+						{"id" : 1, "name" : "公司新闻"},
+						{"id" : 2, "name" : "企业新闻"},
+						{"id" : 3, "name" : "部门新闻"}
+				]}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/page/getPagePlaceholder" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : "",
+				"data" : {
+					"obj" : {"id" : 1, "index" : "index", "resourceType" : "article", "groupId" : 2, "detailConfig" : "{top:true}"}
+				}
+			}]]>
+		</static>
+	</branch>
 </response>

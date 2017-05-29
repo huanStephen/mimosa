@@ -1,7 +1,7 @@
 <div class="container-fluid" data-page>
     <div class="row-fluid">
         <div class="span12">
-            <h3 class="page-title">模板导入</h3>
+            <h3 class="page-title">模板配置</h3>
         </div>
     </div>
 
@@ -10,7 +10,7 @@
             <div class="portlet box light-grey listshadow">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-reply"></i>
+                        <i class="fa fa-gear"></i>
                         <span>模板列表</span>
                     </div>
                 </div>
@@ -19,38 +19,30 @@
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th width="20%">模板名称</th>
-
                                 <th width="10%">编号</th>
 
-                                <th width="20%">名称</th>
+                                <th width="30%">名称</th>
 
-                                <th width="25%">操作</th>
+                                <th width="30%">占位符数</th>
 
-                                <th width="25%">备注</th>
+                                <th width="30%">操作</th>
                             </tr>
                         </thead>
 
                         <tbody data-index="main">
                             <tr class="odd gradeX" data-clone>
-                                <td data-field="templateName"></td>
-
                                 <td data-field="id"></td>
 
                                 <td data-field="name"></td>
 
+                                <td data-field="placeholderCount"></td>
+
                                 <td>
-                                    <a href="javascript:void(0);" class="btn mini green" data-operate="import">
-                                        <i class="fa fa-reply"></i>
-                                        <span>导入</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="btn mini red" data-operate="delete">
-                                        <i class="fa fa-trash"></i>
-                                        <span>删除</span>
+                                    <a href="javascript:void(0);" class="btn mini green" data-operate="entry">
+                                        <i class="fa fa-gear"></i>
+                                        <span>配置</span>
                                     </a>
                                 </td>
-
-                                <td></td>
                             </tr>
                         </tbody>
                     </table>
@@ -59,4 +51,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="template/templateImport.js"></script>
+<script type="text/javascript" src="template/templateConfig.js"></script>

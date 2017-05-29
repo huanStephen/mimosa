@@ -25,7 +25,9 @@
             'sound' : 'resource/index.html',
             'video' : 'resource/index.html',
             'attachment' : 'resource/index.html',
-            'templateImport' : 'template/templateImport.html'
+            'templateImport' : 'template/templateImport.html',
+            'templateConfig' : 'template/templateConfig.html',
+            'page' : 'page/index.html'
         },
 
         load : function() {
@@ -216,9 +218,16 @@
 
     //页面占位符
     var PagePlaceholder = new sepa.Class(sepa.BaseModel);
-    //id,页面ID,占位符ID,占位符索引,资源类型,引入组ID,引入组名称
-    PagePlaceholder.create(['id', 'pageId', 'placeholderId', 'index', 'resourceType', 'groupId', 'groupName']);
+    //id,页面ID,占位符ID,占位符索引,资源类型,引入组ID,引入组名称,详细配置
+    PagePlaceholder.create(['id', 'pageId', 'placeholderId', 'index', 'resourceType', 'groupId', 'groupName', 'detailConfig']);
 
     new sepa.EntitiesManager({id : 'PagePlaceholder', model : PagePlaceholder}).save();
+
+    //模板
+    var SelectNode = new sepa.Class(sepa.BaseModel);
+    //id,名称
+    SelectNode.create(['id', 'name']);
+
+    new sepa.EntitiesManager({id : 'SelectNode', model : SelectNode}).save();
 
 })();
