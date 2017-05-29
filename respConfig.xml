@@ -48,7 +48,7 @@
 		</static>
 	</branch>
 
-	<branch path="/manager/column/updateColumn" type="get">
+	<branch path="/manager/column/updateColumn" type="post">
 		<static>
 			<![CDATA[{
 				"errCode" : 0,
@@ -107,8 +107,27 @@
 					"obj" : {"id" : 1, "title" : "中共中央总书记习近平电贺吴敦义当选中国国民党主席", "sort" : 0,
 						"articleType" : 2, "attribute" : 2, "source" : "新华网", "author" : "张三",
 						"description" : "这是一段新闻", "keyword" : "关键字", "createTime" : "2017-01-05 10:13:57",
-						"content" : "中共中央总书记习近平电贺吴敦义当选中国国民党主席中共中央总书记习近平电贺吴敦义当选中国国民党主席中共中央总书记习近平电贺吴敦义当选中国国民党主席", "status" : 1}
+						"content" : "中华优秀传统文化是习近平总书记治国理念的重要来源之一。十八大以来，无论在国内考察还是国外出访，习近平多次强调中华传统文化的历史影响和重要意义，每一次演讲中都饱含着中华文化的深厚底蕴。",
+						"status" : 1}
 				}
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/article/updateArticle" type="post">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
+			}]]>
+		</static>
+	</branch>
+
+	<branch path="/manager/article/deleteArticle" type="get">
+		<static>
+			<![CDATA[{
+				"errCode" : 0,
+				"errMsg" : ""
 			}]]>
 		</static>
 	</branch>

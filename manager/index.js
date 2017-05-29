@@ -116,7 +116,9 @@
         },
 
         loadPage : function(path) {
-            this.pageContainer.load(path);
+            this.pageContainer.load(path, this.proxy(function() {
+                this._el.animate({scrollTop: 0}, 300);
+            }));
         },
 
         //加载阴影
@@ -223,7 +225,7 @@
 
     new sepa.EntitiesManager({id : 'PagePlaceholder', model : PagePlaceholder}).save();
 
-    //模板
+    //下拉框节点
     var SelectNode = new sepa.Class(sepa.BaseModel);
     //id,名称
     SelectNode.create(['id', 'name']);

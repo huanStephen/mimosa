@@ -215,7 +215,7 @@
         },
 
         examineClick : function(event) {
-            var articleId = this.getRowId(evet);
+            var articleId = this.getRowId(event);
             this.Model.find(articleId).saveSession('rowInfo');
 
             indexCtrl.loadPage('article/articleExamine.html');
