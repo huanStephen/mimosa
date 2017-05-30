@@ -14,14 +14,8 @@
         Model : ArticleEntity,
 
         elements : {
-            //审核意见
-            '*[data-common="examineCommont"]' : 'examineCommont',
-            //参数对象
-            '*[data-params]' : 'p',
             //页面状态
-            '*[data-title]' : 'pageTitle',
-            //字段
-            '*[data-field]' : 'fields',
+            'h3.page-title > span:first' : 'pageTitle',
             //标题
             '*[data-field="title"]' : 'title',
             //排序
@@ -86,11 +80,7 @@
             //附件选择
             'change select.attachmentSelAlbum' : 'attachmentSelAlbumChange',
             //选中附件
-            'click #attachmentModal tr' : 'attachmentSelClick',
-            //保存草稿
-            'click *[data-common="saveDraft"]' : 'saveDraftClick',
-            //提交
-            'click *[data-common="submit"]' : 'submitClick'
+            'click #attachmentModal tr' : 'attachmentSelClick'
         },
 
         blocks : {
@@ -104,75 +94,77 @@
                 params : {
                     articeId : 0
                 }
-            }/*,
+            },
+            getThumbnailAlbumList : {
+                path : 'resource/getResourceAlbumList',
+                params : {
+                    resourceType : 'image'
+                },
+                callback : 'getThumbnailAlbumListResult'
+            },
             getThumbnailList : {
-                path : '../resource/getResourceList',
+                path : 'resource/getResourceList',
                 params : {
                     albumId : ''
                 },
                 callback : 'getThumbnailListResult'
             },
             getImageAlbumList : {
-                path : '../resource/getResourceAlbumList',
+                path : 'resource/getResourceAlbumList',
                 params : {
                     resourceType : 'image'
                 },
                 callback : 'getImageAlbumListResult'
             },
             getImageList : {
-                path : '../resource/getResourceList',
+                path : 'resource/getResourceList',
                 params : {
                     albumId : ''
                 },
                 callback : 'getImageListResult'
             },
             getSoundAlbumList : {
-                path : '../resource/getResourceAlbumList',
+                path : 'resource/getResourceAlbumList',
                 params : {
                     resourceType : 'sound'
                 },
                 callback : 'getSoundAlbumListResult'
             },
             getSoundList : {
-                path : '../resource/getResourceList',
+                path : 'resource/getResourceList',
                 params : {
                     albumId : ''
                 },
                 callback : 'getSoundListResult'
             },
             getVideoAlbumList : {
-                path : '../resource/getResourceAlbumList',
+                path : 'resource/getResourceAlbumList',
                 params : {
                     resourceType : 'video'
                 },
                 callback : 'getVideoAlbumListResult'
             },
             getVideoList : {
-                path : '../resource/getResourceList',
+                path : 'resource/getResourceList',
                 params : {
                     albumId : ''
                 },
                 callback : 'getVideoListResult'
             },
             getAttachmentAlbumList : {
-                path : '../resource/getResourceAlbumList',
+                path : 'resource/getResourceAlbumList',
                 params : {
                     resourceType : 'attachment'
                 },
                 callback : 'getAttachmentAlbumListResult'
             },
             getAttachmentList : {
-                path : '../resource/getResourceList',
+                path : 'resource/getResourceList',
                 params : {
                     albumId : ''
                 },
                 callback : 'getAttachmentListResult'
-            },
-            getArticle : {
-                path : 'getArticle',
-                params : {},
-                callback : 'getArticleResult'
-            }*/
+            }
         },
 
         vaildRole : {
@@ -186,6 +178,11 @@
             description : [['maxlength', '描述不能超过140个字！', 140]]
         },
 
+        submitConfig : {
+            addConfigPath : 'article/addArticle',
+            updateConfigPath : 'article/updateArticle'
+        },
+
         load : function() {
             //初始化富文本编辑器
             //this.ueditor = UE.getEditor('container');
@@ -195,30 +192,42 @@
             this.info.removeSession('rowInfo');
 
             if (this.info.id) {
+                this.pageTitle.text('编辑');
                 this.config.getInfo.params.articeId = this.info.id;
                 this.loadInfo();
+            } else {
+                this.pageTitle.text('添加');
             }
 
-            /*this.component('remote', ['getThumbnailAlbumList']);
+            this.component('remote', ['getThumbnailAlbumList']);
             this.component('remote', ['getImageAlbumList']);
             this.component('remote', ['getSoundAlbumList']);
             this.component('remote', ['getVideoAlbumList']);
-            this.component('remote', ['getAttachmentAlbumList']);*/
+            this.component('remote', ['getAttachmentAlbumList']);
+        },
+
+        replaceRender : function(fieldName, fieldValue) {
+            if('examineCommont' == fieldName) {
+                if($.trim(fieldValue)) {
+                    this.$('span[data-field="examineCommont"]').parents('div.row-fluid').removeClass('hide');
+                }
+            }
+            return fieldValue;
         },
 
         //缩略图
         getThumbnailAlbumListResult : function(result) {
-            if(!result.resultCode) {
-                var $thumbnailSelect = $('#thumbnailModal').find('select');
-                for(var i in result.data) {
+            if(!result.errCode) {
+                var $thumbnailSelect = this.thumbnailModal.find('select');
+                for(var i in result.data.list) {
                     var $option = this.component('element', ['option']).clone();
-                    $option.val(result.data[i].id).text(result.data[i].name);
+                    $option.val(result.data.list[i].id).text(result.data.list[i].name);
                     $thumbnailSelect.append($option.clone());
                 }
 
                 this.thumbnailSelAlbumChange();
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
@@ -228,22 +237,22 @@
         },
 
         getThumbnailListResult : function(result) {
-            if(!result.resultCode) {
-                var $thumbnailList = $('#thumbnailModal').find('div.modal-body');
+            if(!result.errCode) {
+                var $thumbnailList = this.thumbnailModal.find('div.modal-body');
 
                 $thumbnailList.empty();
-                for(var i in result.data) {
+                for(var i in result.data.list) {
                     var $el = this.component('element', ['img']).clone();
-                    $el.attr('src', result.data[i].path).attr('width', '24%').attr('height', '120');
+                    $el.attr('src', result.data.list[i].path).attr('width', '24%').attr('height', '120');
                     $thumbnailList.append($el);
                 }
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
         thumbnailSelClick : function(event) {
-            var path = $(event.target).attr('src');
+            var path = this.$(event.target).attr('src');
             this.thum.attr('src', path);
             this.thumbnails.val(path);
             this.thumbnailModal.modal('hide');
@@ -256,17 +265,17 @@
 
         //图片
         getImageAlbumListResult : function(result) {
-            if(!result.resultCode) {
-                var $imageSelect = $('#imageModal').find('select');
-                for(var i in result.data) {
+            if(!result.errCode) {
+                var $imageSelect = this.imageModal.find('select');
+                for(var i in result.data.list) {
                     var $option = this.component('element', ['option']).clone();
-                    $option.val(result.data[i].id).text(result.data[i].name);
+                    $option.val(result.data.list[i].id).text(result.data.list[i].name);
                     $imageSelect.append($option.clone());
                 }
 
                 this.imageSelAlbumChange();
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
@@ -276,38 +285,38 @@
         },
 
         getImageListResult : function(result) {
-            if(!result.resultCode) {
-                var $imageList = $('#imageModal').find('div.modal-body');
+            if(!result.errCode) {
+                var $imageList = this.imageModal.find('div.modal-body');
 
                 $imageList.empty();
-                for(var i in result.data) {
+                for(var i in result.data.list) {
                     var $el = this.component('element', ['img']).clone();
-                    $el.attr('src', result.data[i].path).attr('width', '24%').attr('height', '120');
+                    $el.attr('src', result.data.list[i].path).attr('width', '24%').attr('height', '120');
                     $imageList.append($el);
                 }
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
         imageSelClick : function(event) {
-            this.ueditor.execCommand('insertHtml', '<img src="' + $(event.target).attr('src') + '"/>');
+            this.ueditor.execCommand('insertHtml', '<img src="' + this.$(event.target).attr('src') + '"/>');
             this.imageModal.modal('hide');
         },
 
         //音频
         getSoundAlbumListResult : function(result) {
-            if(!result.resultCode) {
-                var $soundSelect = $('#soundModal').find('select');
-                for(var i in result.data) {
+            if(!result.errCode) {
+                var $soundSelect = this.soundModal.find('select');
+                for(var i in result.data.list) {
                     var $option = this.component('element', ['option']).clone();
-                    $option.val(result.data[i].id).text(result.data[i].name);
+                    $option.val(result.data.list[i].id).text(result.data.list[i].name);
                     $soundSelect.append($option.clone());
                 }
 
                 this.soundSelAlbumChange();
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
@@ -317,41 +326,41 @@
         },
 
         getSoundListResult : function(result) {
-            if(!result.resultCode) {
-                var $soundList = $('#soundModal').find('tbody');
+            if(!result.errCode) {
+                var $soundList = this.soundModal.find('tbody');
 
                 $soundList.empty();
-                for(var i in result.data) {
+                for(var i in result.data.list) {
                     var $row = this.soundRowEl.clone();
-                    $row.children(':first').text(result.data[i].id);
-                    $row.children(':eq(1)').text(result.data[i].description);
-                    $row.find('source').attr('src', result.data[i].path);
+                    $row.children(':first').text(result.data.list[i].id);
+                    $row.children(':eq(1)').text(result.data.list[i].description);
+                    $row.find('source').attr('src', result.data.list[i].path);
                     $soundList.append($row);
                 }
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
         soundSelClick : function(event) {
-            var path = $(event.target).parent('tr').find('source').attr('src');
+            var path = this.$(event.target).parent('tr').find('source').attr('src');
             this.ueditor.execCommand('insertHtml', '<audio controls><source src="' + path + '" type="audio/mpeg"></audio>');
             this.soundModal.modal('hide');
         },
 
         //视频
         getVideoAlbumListResult : function(result) {
-            if(!result.resultCode) {
-                var $videoSelect = $('#videoModal').find('select');
-                for(var i in result.data) {
+            if(!result.errCode) {
+                var $videoSelect = this.videoModal.find('select');
+                for(var i in result.data.list) {
                     var $option = this.component('element', ['option']).clone();
-                    $option.val(result.data[i].id).text(result.data[i].name);
+                    $option.val(result.data.list[i].id).text(result.data.list[i].name);
                     $videoSelect.append($option.clone());
                 }
 
                 this.videoSelAlbumChange();
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
@@ -361,40 +370,39 @@
         },
 
         getVideoListResult : function(result) {
-            if(!result.resultCode) {
-                var $videoList = $('#videoModal').find('div.modal-body');
+            if(!result.errCode) {
+                var $videoList = this.videoModal.find('div.modal-body');
 
                 $videoList.empty();
-                for(var i in result.data) {
+                for(var i in result.data.list) {
                     var $el = $('<a><video controls width="24%" height="120" src=""></video></a>');
-                    $el.find('video').attr('src', result.data[i].path);
+                    $el.find('video').attr('src', result.data.list[i].path);
                     $videoList.append($el);
                 }
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
         videoSelClick : function(event) {
-            var path = $(event.target).attr('src');
+            var path = this.$(event.target).attr('src');
             this.ueditor.execCommand('insertHtml', '<video controls src="' + path + '"></video></a>');
             this.videoModal.modal('hide');
         },
 
-
         //附件
         getAttachmentAlbumListResult : function(result) {
-            if(!result.resultCode) {
-                var $attachmentSelect = $('#attachmentModal').find('select');
-                for(var i in result.data) {
+            if(!result.errCode) {
+                var $attachmentSelect = this.attachmentModal.find('select');
+                for(var i in result.data.list) {
                     var $option = this.component('element', ['option']).clone();
-                    $option.val(result.data[i].id).text(result.data[i].name);
+                    $option.val(result.data.list[i].id).text(result.data.list[i].name);
                     $attachmentSelect.append($option.clone());
                 }
 
                 this.attachmentSelAlbumChange();
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
@@ -404,188 +412,64 @@
         },
 
         getAttachmentListResult : function(result) {
-            if(!result.resultCode) {
+            if(!result.errCode) {
                 var $attachmentList = this.attachmentModal.find('tbody');
 
                 $attachmentList.empty();
-                for(var i in result.data) {
+                for(var i in result.data.list) {
                     var $row = this.soundRowEl.clone();
-                    $row.children(':eq(0)').text(result.data[i].id);
-                    $row.children(':eq(1)').text(result.data[i].name);
-                    $row.children(':eq(2)').text(result.data[i].description);
+                    $row.children(':eq(0)').text(result.data.list[i].id);
+                    $row.children(':eq(1)').text(result.data.list[i].name);
+                    $row.children(':eq(2)').text(result.data.list[i].description);
                     $attachmentList.append($row);
                 }
             } else {
-                console.error(result.resultMsg);
+                console.error(result.errMsg);
             }
         },
 
         attachmentSelClick : function(event) {
-            var $row = $(event.target).parent('tr');
+            var $row = this.$(event.target).parent('tr');
             var id = $row.children(':eq(0)').text();
             var description = $row.children(':eq(2)').text();
-            var a = '<a href="../resource/downloadResource?resourceId=' + id + '">' + description + '</a>';
+            var a = '<a href="resource/downloadResource?resourceId=' + id + '">' + description + '</a>';
             this.ueditor.execCommand('insertHtml', a);
             this.attachmentModal.modal('hide');
         },
 
+        submitBefore : function(info, event) {
+            //info.content = this.articleType == 2 ? this.ueditor.getContentTxt() : this.ueditor.getContent();
+
+            var $el = this.$(event.target)[0].tagName == 'BUTTON' ? this.$(event.target) :
+                this.$(event.target).parent('button');
+            info.status = $el.data('status');
+        },
+
+        backClick : function() {
+            indexCtrl.loadPage('article/index.html');
+        },
+
         soundRowBlk : function() {
             return '<tr>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td>' +
-                '<audio controls>' +
-                '<source src="" type="audio/mpeg">' +
-                '</audio>' +
-                '</td>' +
-                '</tr>';
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td>' +
+                            '<audio controls>' +
+                                '<source src="" type="audio/mpeg">' +
+                            '</audio>' +
+                        '</td>' +
+                    '</tr>';
         },
 
         attachmentRowBlk : function() {
             return '<tr>' +
-                '<td></td>' +
-                '<td></td>' +
-                '<td></td>' +
-                '</tr>';
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                    '</tr>';
         }
     });
 
     new ArticleEditController('div[data-page]');
-
-    /*ColumnEditController.include({
-
-        Model : ColumnEntity,
-
-        elements : {
-            //标题
-            'h3.page-title > span:first' : 't',
-            //导航
-            'ul.breadcrumb' : 'navContainer',
-            //标题
-            'input[data-field="title"]' : 'title',
-            //描述
-            'textarea[data-field="description"]' : 'description'
-        },
-
-        events : {
-            'click a[data-parentId]' : 'navClick'
-        },
-
-        blocks : {
-            'navBlk' : 'navEl'
-        },
-
-        config : {
-            getInfo : {
-                path : 'column/getColumn',
-                params : {
-                    columnId : 0
-                },
-                callback : 'getInfoResult'
-            }
-        },
-
-        vaildRole : {
-            title : [['required', '请输入栏目标题！'],
-                ['maxlength', '栏目标题不能超过15个字！', 15]],
-            description : [['maxlength', '描述不能超过140个字！', 140]]
-        },
-
-        submitConfig : {
-            addConfigPath : 'column/addColumn',
-            updateConfigPath : 'column/updateColumn'
-        },
-
-        level : [],
-
-        load : function() {
-            this.info = new ColumnEntity();
-            this.info.loadSession('rowInfo');
-            this.info.removeSession('rowInfo');
-
-            this.renderNav();
-
-            if(this.info.id) {
-                this.config.getInfo.params.columnId = this.info.id;
-                this.loadInfo();
-            }
-
-        },
-
-        renderNav : function() {
-            var lv = this.component('loadSession', ['level']);
-            this.component('removeSession', ['level']);
-            lv = lv || this.level;
-
-            this.navContainer.empty();
-
-            var spl, $nav = null, $title = null;
-            for(var i=0; i < lv.length; i++) {
-                spl = lv[i].split(',');
-                $nav = this.navEl.clone();
-                if(i == 0) {
-                    $nav.children('i').addClass('fa-home');
-                } else {
-                    $nav.children('i').addClass('fa-angle-right');
-                }
-
-                $title = this.component('element', ['a']).clone();
-                $title.attr('href', 'javascript:void(0);');
-
-                $title.attr('data-parentid', spl[0]).text(spl[1]);
-
-                $nav.append($title);
-
-                this.navContainer.append($nav);
-            }
-
-            $nav = this.navEl.clone();
-            $nav.children('i').addClass('fa-angle-right');
-            $title = this.component('element', ['span']).clone();
-            if(this.info.id) {
-                this.t.text('编辑');
-                $title.text('编辑');
-            } else {
-                this.t.text('添加');
-                $title.text('添加');
-            }
-            $nav.append($title);
-
-            this.navContainer.append($nav);
-
-            this.level = lv;
-        },
-
-        navClick : function(event) {
-            var parentId = this.$(event.target).data('parentid');
-
-            for(var i=this.level.length - 1; i >= 0; i--) {
-                var spl = this.level[i].split(',');
-                if(spl[0] == parentId) {
-                    this.level.splice(i + 1, this.level.length - i - 1);
-
-                    this.component('saveSession', ['level', this.level]);
-                    indexCtrl.loadPage('column/index.html');
-                    break;
-                }
-            }
-        },
-
-        submitBefore : function() {
-            this.component('saveSession', ['level', this.level]);
-        },
-
-        backClick : function() {
-            this.component('saveSession', ['level', this.level]);
-            indexCtrl.loadPage('column/index.html');
-        },
-
-        navBlk : function() {
-            return '<li><i class="fa"></i></li>';
-        }
-
-    });
-
-    new ColumnEditController('div[data-page]');*/
 
 })();

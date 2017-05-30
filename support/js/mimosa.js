@@ -287,7 +287,7 @@
             }
         },
 
-        submitClick : function() {
+        submitClick : function(event) {
             var result = this.component('combVaildate', [this.info, this.vaildRole, function(errMsg) {
                 var $row = $(this).parents('*[data-row]');
                 if(errMsg) $row.addClass('error');
@@ -295,7 +295,7 @@
                 $row.find('*[data-msg]').text(errMsg);
             }]);
 
-            if(this.submitBefore) this.submitBefore.call(this, this.info);
+            if(this.submitBefore) this.submitBefore.call(this, this.info, event);
 
             if(result) {
                 if(!this.info.id) {
