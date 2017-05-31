@@ -15,7 +15,10 @@
 
         config : {
             getList : {
-                path : 'page/getPagePlaceholderList'
+                path : 'page/getPagePlaceholderList',
+                params : {
+                    pageId : 0
+                }
             }
         },
 
@@ -27,6 +30,11 @@
         },
 
         load : function() {
+            this.info = new PageEntity();
+            this.info.loadSession('rowInfo');
+            this.info.removeSession('rowInfo');
+
+            this.config.getList.params.pageId = this.id;
             this.loadList();
         },
 

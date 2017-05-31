@@ -92,7 +92,7 @@
             getInfo : {
                 path : 'article/getArticle',
                 params : {
-                    articeId : 0
+                    articleId : 0
                 }
             },
             getThumbnailAlbumList : {

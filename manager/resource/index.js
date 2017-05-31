@@ -45,8 +45,7 @@
             },
             edit : {
                 page : 'resource/resourceAlbumEdit.html',
-                requireRowInfo : true,
-                before : 'editBefore'
+                requireRowInfo : true
             },
             delete : {
                 before : 'deleteBefore',

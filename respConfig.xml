@@ -248,7 +248,7 @@
 		</static>
 	</branch>
 
-	<branch path="/manager/template/addTemplate" type="post">
+	<branch path="/manager/template/importTemplate" type="post">
 		<static>
 			<![CDATA[{
 				"errCode" : 0,
