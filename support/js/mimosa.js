@@ -96,7 +96,7 @@
                 }
             } else {
                 var size = this.cloneRow.children().length;
-                var $emptyRow = this.component('element', ['td']).clone().attr('colspan', size).text('没有检索到任何数据！');
+                var $emptyRow = this.component('element', ['td']).clone().attr('colspan', size).css('text-align', 'center').text('没有检索到任何数据！');
                 this.cloneRow.empty().append($emptyRow);
 
             }
