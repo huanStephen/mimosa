@@ -64,9 +64,9 @@
         },
 
         renderList : function() {
+            this.listContainer.empty();
             if(this.Model.count()) {
                 var list = this.Model.all();
-                this.listContainer.empty();
 
                 var fieldNames = [];
 
@@ -96,9 +96,11 @@
                 }
             } else {
                 var size = this.cloneRow.children().length;
+                var row = this.cloneRow.clone();
+                row.empty();
                 var $emptyRow = this.component('element', ['td']).clone().attr('colspan', size).css('text-align', 'center').text('没有检索到任何数据！');
-                this.cloneRow.empty().append($emptyRow);
-
+                row.append($emptyRow);
+                this.listContainer.append(row);
             }
         },
 
