@@ -430,4 +430,34 @@
 			}]]>
 		</static>
 	</branch>
+
+
+
+	<branch path="/custom/article/loadTopics" type="get">
+		<static>
+			<![CDATA[{
+				"result" : true,
+				"introduction" : "To be, or not to be, that is the question!",
+				"currPage" : 8,
+				"totalPage" : 50,
+				"topics" : [
+					{"id" : 1, "type" : 1, "title" : "A Wonderful Serenity", "authorId" : 1, "author" : "张三",
+						"createTime" : "2016-12-20", "views" : 100, "replies" : 30,
+						"excerpt" : "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents."},
+					{"id" : 2, "type" : 3, "title" : "The Meridian Sun", "authorId" : 2, "author" : "李四",
+						"createTime" : "2016-12-20", "views" : 120, "replies" : 24,
+						"excerpt" : "When, while the <strong>lovely valley</strong> teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies."},
+					{"id" : 3, "type" : 5, "title" : "Gallery Format", "authorId" : 3, "author" : "王五",
+						"createTime" : "2016-12-20", "views" : 80, "replies" : 12,
+						"excerpt" : "O my friend &#8212; but it is too much for my strength &#8212; I sink under the weight of the splendour of these visions! A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p><p>He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment."},
+					{"id" : 4, "type" : 9, "title" : "Gregor Samsa", "authorId" : 4, "author" : "嘿嘿",
+						"createTime" : "2016-12-20", "views" : 30, "replies" : 10,
+						"excerpt" : "<blockquote>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment.<cite>Kafka</cite></blockquote>"},
+					{"id" : 5, "type" : 6, "title" : "A Life In The Day", "authorId" : 5, "author" : "哈哈",
+						"createTime" : "2016-12-20", "views" : 76, "replies" : 12,
+						"excerpt" : "Filmed on May 5, 2010, a mostly first-person chronicle of the day&#8217;s events leading up to a performance in Wollongong, Australia. Shot on Canon 5D mkII with 50mm 1.2 and 24-70 lenses."}
+				]
+			}]]>
+		</static>
+	</branch>
 </response>
