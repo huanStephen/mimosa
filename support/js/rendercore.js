@@ -10,7 +10,7 @@
 
     var PagePlaceholderEntity = new sepa.Class([PagePlaceholder.model, sepa.Model]);
 
-    var CoreCtrl = new sepa.Class([sepa.Controller, sepa.CRemote]);
+    var CoreCtrl = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement]);
 
     CoreCtrl.include({
         //页面
@@ -157,6 +157,7 @@
                 for(var i in list) {
                     this._placeholders[list[i].index] = list[i];
                 }
+                this.loadPlaceholderData();
             } else {
                 console.error('没有任何占位符！');
             }
@@ -202,7 +203,7 @@
          */
         getPlaceholderDataResult : function(result) {
             if(!result.resultCode) {
-                this._entities[result.index].populate(result.data.list);
+                this._entities[result.data.index].populate(result.data.list);
                 if(-- this.placeholderLoadComplateSize == 0) {
                     this._pageState |= this._pageDataLoadSuccess;
                     this.pageRender();
@@ -235,7 +236,7 @@
 
                     $clone.remove();
 
-                    var list = this._entities[i];
+                    var list = this._entities[i].all();
                     for(var j in list) {
                         var data = list[j];
                         var $r = $row.clone();
@@ -257,13 +258,13 @@
                         var $author = $r.find('*[data-field="author"]');
                         $author.text(data.author);
 
-                        //来源
-                        var $source = $r.find('*[data-field="source"]');
-                        $source.text(data.source);
+                        //创建时间
+                        var $source = $r.find('*[data-field="createTime"]');
+                        $source.text(data.createTime);
 
-                        //关键字
-                        var $keyword = $r.find('*[data-field="keyword"]');
-                        $keyword.text(data.keyword);
+                        //内容
+                        var $keyword = $r.find('*[data-field="description"]');
+                        $keyword.text(data.description);
 
                         $container.append($r);
                     }
