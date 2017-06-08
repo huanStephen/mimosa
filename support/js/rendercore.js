@@ -39,6 +39,28 @@
             ATTACHMENT : 'attachment'
         },
 
+        //占位符详细配置
+        _placeholderDetailConfig : {
+            //渲染
+            render : {
+                //使用append方式添加的元素列表
+                apdArr : [],
+                //属性
+                attrs : {
+                    //image : ['alt', 'data-name']
+                },
+                //拦截器
+                filter : {
+
+                },
+                //分页配置
+                page : {
+                    //是否开启分页
+                    isOpen : false
+                }
+            }
+        },
+
         elements : {
             '*[data-container]' : 'pageContainer'
         },
@@ -155,6 +177,7 @@
             if(PagePlaceholderEntity.count()) {
                 var list = PagePlaceholderEntity.all();
                 for(var i in list) {
+                    list[i].detailConfig = $.extend(true, this._placeholderDetailConfig, eval('(' + list[i].detailConfig + ')'));
                     this._placeholders[list[i].index] = list[i];
                 }
                 this.loadPlaceholderData();
@@ -240,31 +263,27 @@
                     for(var j in list) {
                         var data = list[j];
                         var $r = $row.clone();
-                        //标题
-                        var $title = $r.find('*[data-field="title"]');
-                        if($title.attr('data-field="link"') != 'undefined') {
-                            if('A' == $title[0].nodeName) {
-                                var $a = this.component('element', ['a']).clone();
-                                $a.attr('href', '#' + location.hash.slice(1) + '/' + data.id).text(data.title);
-                                $title.append($a);
-                            } else {
-                                $title.attr('href', '#' + location.hash.slice(1) + '/' + data.id).text(data.title);
+
+                        //遍历元素字段
+                        $r.find('*[data-field]').each(this.proxy(function(idx, el) {
+                            var $el = this.$(el);
+                            var fieldName = $el.data('field');
+
+                            //数据非空判断
+                            if(data[fieldName]) {
+                                //append属性判断
+                                if(this.contains(placeholder.detailConfig.render.apdArr, fieldName)) {
+                                    $el.append(data[fieldName]);
+                                } else {
+                                    $el.text(data[fieldName]);
+                                }
+
+                                var attrs = placeholder.detailConfig.render.attrs[fieldName];
+                                for(var i in attrs) {
+                                    $el.attr(attrs[i], data[fieldName]);
+                                }
                             }
-                        } else {
-                            $title.text(data.title);
-                        }
-
-                        //作者
-                        var $author = $r.find('*[data-field="author"]');
-                        $author.text(data.author);
-
-                        //创建时间
-                        var $source = $r.find('*[data-field="createTime"]');
-                        $source.text(data.createTime);
-
-                        //内容
-                        var $keyword = $r.find('*[data-field="description"]');
-                        $keyword.text(data.description);
+                        }));
 
                         $container.append($r);
                     }
@@ -273,8 +292,15 @@
             }
         },
 
-        columnRender : function() {
-
+        //数组查询对象是否存在
+        contains : function(arr, obj) {
+            var len = arr.length;
+            while(len--) {
+                if(arr[len] == obj) {
+                    return true;
+                }
+            }
+            return false;
         }
 
     });
