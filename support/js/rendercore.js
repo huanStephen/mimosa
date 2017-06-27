@@ -39,6 +39,11 @@
             ATTACHMENT : 'attachment'
         },
 
+        //页面详细配置
+        _pageDetailConfig : {
+            type : 'single'   //single：单独hash, params: 有参hash
+        },
+
         //占位符详细配置
         _placeholderDetailConfig : {
             //渲染
@@ -49,10 +54,20 @@
                 attrs : {
                     //image : ['alt', 'data-name']
                 },
+                //仅取字段
+                only : [],
+                //忽略取值字段
+                ignore : [],
+                //进入页面hash
+                entry : {
+                    //detail : 'post'
+                },
                 //拦截器
                 filter : {
 
                 },
+                //显示条数
+                size : 0,
                 //分页配置
                 page : {
                     //是否开启分页
@@ -111,6 +126,8 @@
                 var list = PageEntity.all();
 
                 for(var i in list) {
+                    list.detailConfig = $.extend(true, this._pageDetailConfig,
+                        $.trim(list[i].detailConfig) ? eval('(' + list[i].detailConfig + ')') : {});
                     this._pages[list[i].hashIndex] = list[i];
                 }
 
@@ -139,10 +156,26 @@
             }
             //初始化页面状态
             this._pageState = 0;
+
+            var hashArr = hash.split('/');
+            if(this._pages[hashArr[0]]) {
+                if(this._pages[hashArr[0]].detailConfig == 'single') {
+                    if(hashArr.length != 1) {
+                        throw('Page\'s detailConfig exception!');
+                    }
+                } else if(this._pages[hashArr[0]].detailConfig == 'params') {
+                    if(hashArr.length == 1) {
+                        throw('Page\'s detailConfig exception!');
+                    }
+                }
+            } else {
+                throw('Page not found!');
+            }
+
             //加载页面
-            this.pageContainer.load(this._pages[hash].templateName, this.proxy(this.loadPageResult));
+            this.pageContainer.load(this._pages[hashArr[0]].templateName, this.proxy(this.loadPageResult));
             //加载数据
-            this.config.getPagePlaceholderList.params.pageId = this._pages[hash].id;
+            this.config.getPagePlaceholderList.params.pageId = this._pages[hashArr[0]].id;
             this.component('remote', ['getPagePlaceholderList']);
         },
 
@@ -177,7 +210,8 @@
             if(PagePlaceholderEntity.count()) {
                 var list = PagePlaceholderEntity.all();
                 for(var i in list) {
-                    list[i].detailConfig = $.extend(true, this._placeholderDetailConfig, eval('(' + list[i].detailConfig + ')'));
+                    list[i].detailConfig = $.extend(true, this._placeholderDetailConfig,
+                        $.trim(list[i].detailConfig) ? eval('(' + list[i].detailConfig + ')') : {});
                     this._placeholders[list[i].index] = list[i];
                 }
                 this.loadPlaceholderData();
@@ -206,6 +240,7 @@
 
                     this.config.getPlaceholderData.path = 'article/getArticleList';
                     this.config.getPlaceholderData.params.columnId = list[i].groupId;
+                    this.config.getPlaceholderData.params.articleId = location.hash.slice(1).split('/')[0];
                 }
                 if(this._resType.IMAGE == list[i].resourceType || this._resType.SOUND == list[i].resourceType ||
                     this._resType.VIDEO == list[i].resourceType || this._resType.ATTACHMENT == list[i].resourceType) {
@@ -281,6 +316,24 @@
                                 var attrs = placeholder.detailConfig.render.attrs[fieldName];
                                 for(var i in attrs) {
                                     $el.attr(attrs[i], data[fieldName]);
+                                }
+                            }
+                        }));
+
+                        //遍历进入标记
+                        $r.find('*[data-entry]').each(this.proxy(function(idx, el) {
+                            var $el = this.$(el);
+                            var flag = $el.data('entry');
+
+                            var hash = placeholder.detailConfig.render.entry[flag];
+                            if(hash) {
+                                var path = hash + '/' + data.id;
+                                var tagName = el.tagName;
+
+                                if(tagName == 'A') {
+                                    $el.attr('href', '#' + path);
+                                } else {
+                                    $el.attr('onclick', 'javascript:#' + path);
                                 }
                             }
                         }));

@@ -57,8 +57,8 @@
 
     //页面
     var Page = new sepa.Class(sepa.BaseModel);
-    //id,hash索引,页面名称,模板名称,模板名称
-    Page.create(['id', 'hashIndex', 'name', 'templateId', 'templateName']);
+    //id,hash索引,页面名称,模板名称,模板名称,详细配置
+    Page.create(['id', 'hashIndex', 'name', 'templateId', 'templateName', 'detailConfig']);
 
     new sepa.EntitiesManager({id : 'Page', model : Page}).save();
 
