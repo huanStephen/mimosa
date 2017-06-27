@@ -226,6 +226,8 @@
         loadPlaceholderData : function() {
             var list = PagePlaceholderEntity.all();
             this.placeholderLoadComplateSize = PagePlaceholderEntity.count();
+
+            var id = location.hash.slice(1).split('/')[1];
             for(var i in list) {
                 if(this._resType.COLUMN == list[i].resourceType) {
                     var Column = sepa.EntitiesManager.find('Column');
@@ -233,6 +235,7 @@
 
                     this.config.getPlaceholderData.path = 'column/getColumnList';
                     this.config.getPlaceholderData.params.parentId = list[i].groupId;
+                    this.config.getPlaceholderData.params.columnId = id;
                 }
                 if(this._resType.ARTICLE == list[i].resourceType) {
                     var Article = sepa.EntitiesManager.find('Article');
@@ -240,7 +243,7 @@
 
                     this.config.getPlaceholderData.path = 'article/getArticleList';
                     this.config.getPlaceholderData.params.columnId = list[i].groupId;
-                    this.config.getPlaceholderData.params.articleId = location.hash.slice(1).split('/')[0];
+                    this.config.getPlaceholderData.params.articleId = id;
                 }
                 if(this._resType.IMAGE == list[i].resourceType || this._resType.SOUND == list[i].resourceType ||
                     this._resType.VIDEO == list[i].resourceType || this._resType.ATTACHMENT == list[i].resourceType) {
@@ -249,6 +252,7 @@
 
                     this.config.getPlaceholderData.path = 'resource/getResourceList';
                     this.config.getPlaceholderData.params.albumId = list[i].groupId;
+                    this.config.getPlaceholderData.params.resourceId = id;
                 }
 
                 this.config.getPlaceholderData.params.index = list[i].index;
