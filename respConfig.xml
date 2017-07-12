@@ -483,7 +483,7 @@
 				"data" : {
 					"list" : [{"id" : 1, "pageId" : 1, "placeholderId" : 1, "index" : "list", "resourceType" : "article", "groupId" : 1,
 						"groupName" : "新闻", "detailConfig" :
-						"{render:{apdArr:['description'],attrs:{author:['data-name', 'alt']},only:['title','createTime','author','viewCount'],entry:{detail:'post'},size:5}}"}]
+						"{render:{apdArr:['description'],attrs:{author:['data-name', 'alt']},only:['title','createTime','author','viewCount'],entry:{detail:'post'},size:5,page:{isOpen:true}}}"}]
 				}
 			}]]>
 		</static>
@@ -512,6 +512,8 @@
 				"resultMsg" : "",
 				"data" : {
 					"index" : "list",
+					"currPage" : 1,
+					"totalPage" : 9,
 					"list" : [{"id" : 1, "type" : 1, "title" : "A Wonderful Serenity", "authorId" : 1, "author" : "张三",
 						"createTime" : "2016-12-20", "viewCount" : 100, "replies" : 30,
 						"description" : "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents."},

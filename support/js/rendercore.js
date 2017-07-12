@@ -10,7 +10,7 @@
 
     var PagePlaceholderEntity = new sepa.Class([PagePlaceholder.model, sepa.Model]);
 
-    var CoreCtrl = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement]);
+    var CoreCtrl = new sepa.Class([sepa.Controller, sepa.CRemote, sepa.CElement, sepa.CPage]);
 
     CoreCtrl.include({
         //页面
@@ -36,7 +36,8 @@
             IMAGE : 'image',
             SOUND : 'sound',
             VIDEO : 'video',
-            ATTACHMENT : 'attachment'
+            ATTACHMENT : 'attachment',
+            PAGE : 'page'
         },
 
         //页面详细配置
@@ -71,13 +72,49 @@
                 //分页配置
                 page : {
                     //是否开启分页
-                    isOpen : false
+                    isOpen : false,
+                    //分页类型
+                    type : 'block',
+                    //块数
+                    block : 5,
+                    //分页容器
+                    container : '',
+                    btnFontPos : 'a',
+                    btns : {
+                        prevBtn : 'prevBtnEl',
+                        nextBtn : 'nextBtnEl',
+                        actBtn : 'actBtnEl',
+                        pageBtn : 'pageBtnEl',
+                        moitBtn : 'moitBtnEl'
+                    },
+                    methods : {
+                        prevMethod : 'pervClick',
+                        nextMethod : 'nextClick',
+                        pageMethod : 'pageClick'
+                    },
+                    //当前页
+                    currPage : 1,
+                    //总页数
+                    totalPage : 1
                 }
             }
         },
 
         elements : {
             '*[data-container]' : 'pageContainer'
+        },
+
+        events : {
+            //非A标签跳转
+            'click *[data-hpath]' : 'noAEntryClick'
+        },
+
+        blocks : {
+            'prevBtnBlk' : 'prevBtnEl',
+            'nextBtnBlk' : 'nextBtnEl',
+            'actBtnBlk' : 'actBtnEl',
+            'pageBtnBlk' : 'pageBtnEl',
+            'moitBtnBlk' : 'moitBtnEl'
         },
 
         config : {
@@ -230,29 +267,17 @@
             var id = location.hash.slice(1).split('/')[1];
             for(var i in list) {
                 if(this._resType.COLUMN == list[i].resourceType) {
-                    var Column = sepa.EntitiesManager.find('Column');
-                    this._entities[list[i].index] = new sepa.Class([Column.model, sepa.Model]);
-
-                    this.config.getPlaceholderData.path = 'column/getColumnList';
-                    this.config.getPlaceholderData.params.parentId = list[i].groupId;
-                    this.config.getPlaceholderData.params.columnId = id;
+                    this.loadColumnList(list[i].index, list[i].groupId, id);
                 }
                 if(this._resType.ARTICLE == list[i].resourceType) {
-                    var Article = sepa.EntitiesManager.find('Article');
-                    this._entities[list[i].index] = new sepa.Class([Article.model, sepa.Model]);
-
-                    this.config.getPlaceholderData.path = 'article/getArticleList';
-                    this.config.getPlaceholderData.params.columnId = list[i].groupId;
-                    this.config.getPlaceholderData.params.articleId = id;
+                    this.loadArticleList(list[i].index, list[i].groupId, id);
                 }
                 if(this._resType.IMAGE == list[i].resourceType || this._resType.SOUND == list[i].resourceType ||
                     this._resType.VIDEO == list[i].resourceType || this._resType.ATTACHMENT == list[i].resourceType) {
-                    var Resource = sepa.EntitiesManager.find('Resource');
-                    this._entities[list[i].index] = new sepa.Class([Resource.model, sepa.Model]);
-
-                    this.config.getPlaceholderData.path = 'resource/getResourceList';
-                    this.config.getPlaceholderData.params.albumId = list[i].groupId;
-                    this.config.getPlaceholderData.params.resourceId = id;
+                    this.loadResourceList(list[i].index, list[i].groupId, id);
+                }
+                if(this._resType.PAGE == list[i].resourceType) {
+                    this.loadPageList(list[i].index, list[i].groupId, id);
                 }
 
                 this.config.getPlaceholderData.params.index = list[i].index;
@@ -261,11 +286,83 @@
         },
 
         /**
+         * 获取栏目列表
+         * @param index 索引值
+         * @param parentId  父栏目ID
+         * @param columnId  栏目ID
+         */
+        loadColumnList : function(index, parentId, columnId) {
+            if(!this._entities[index]) {
+                var Column = sepa.EntitiesManager.find('Column');
+                this._entities[list[i].index] = new sepa.Class([Column.model, sepa.Model]);
+            }
+
+            this.config.getPlaceholderData.path = 'column/getColumnList';
+            this.config.getPlaceholderData.params.parentId = groupId;
+            this.config.getPlaceholderData.params.columnId = columnId;
+        },
+
+        /**
+         * 获取文章列表
+         * @param index 索引值
+         * @param columnId  栏目ID
+         * @param articleId 文章ID
+         */
+        loadArticleList : function(index, columnId, articleId) {
+            if(!this._entities[index]) {
+                var Article = sepa.EntitiesManager.find('Article');
+                this._entities[index] = new sepa.Class([Article.model, sepa.Model]);
+            }
+
+            this.config.getPlaceholderData.path = 'article/getArticleList';
+            this.config.getPlaceholderData.params.columnId = columnId;
+            this.config.getPlaceholderData.params.articleId = articleId;
+        },
+
+        /**
+         * 获取资源列表
+         * @param index 索引值
+         * @param albumId   栏目ID
+         * @param resourceId    资源ID
+         */
+        loadResourceList : function(index, albumId, resourceId) {
+            if(!this._entities[index]) {
+                var Resource = sepa.EntitiesManager.find('Resource');
+                this._entities[index] = new sepa.Class([Resource.model, sepa.Model]);
+            }
+
+            this.config.getPlaceholderData.path = 'resource/getResourceList';
+            this.config.getPlaceholderData.params.albumId = albumId;
+            this.config.getPlaceholderData.params.resourceId = resourceId;
+        },
+
+        /**
+         * 获取页面列表
+         * @param index 索引值
+         * @param pageId    页面ID
+         */
+        loadPageList : function(index, pageId) {
+            if(!this._entities[index]) {
+                var Page = sepa.EntitiesManager.find('Page');
+                this._entities[index] = new sepa.Class([Page.model, sepa.Model]);
+            }
+
+            this.config.getPlaceholderData.path = 'page/getPageList';
+            this.config.getPlaceholderData.params.pageId = articleId;
+        },
+
+        /**
          * 加载占位符数据结果
          */
         getPlaceholderDataResult : function(result) {
             if(!result.resultCode) {
+                // 将结果保存在相同hash名的实体类里
                 this._entities[result.data.index].populate(result.data.list);
+                // 判断是否有分页，如果有将保存当前页和总页数
+                if (this._placeholders[result.data.index].detailConfig.render.page.isOpen) {
+                    this._placeholders[result.data.index].detailConfig.render.page.currPage = result.data.currPage;
+                    this._placeholders[result.data.index].detailConfig.render.page.totalPage = result.data.totalPage;
+                }
                 if(-- this.placeholderLoadComplateSize == 0) {
                     this._pageState |= this._pageDataLoadSuccess;
                     this.pageRender();
@@ -291,6 +388,21 @@
                 for(var i in this._placeholders) {
                     var placeholder = this._placeholders[i];
 
+                    //渲染变量
+                    var render = placeholder.detailConfig.render;
+
+                    //是否开启分页
+                    if(render.page.isOpen) {
+                        //如果有容器则使用该容器，否则使用默认容器
+                        if(!$.trim(render.page.container)) {
+                            render.page.container = '*[data-index="' + i + '-page"]';
+                        }
+                        this.config[i + 'Page'] = $.extend(true, {}, render.page);
+                        this.component('openPage', [i + 'Page']);
+
+                        this.show(render.page.currPage, render.page.totalPage);
+                    }
+
                     var $container = this.$('*[data-index=' + i + ']');
 
                     var $clone = $container.children('*[data-clone]');
@@ -311,13 +423,13 @@
                             //数据非空判断
                             if(data[fieldName]) {
                                 //append属性判断
-                                if(this.contains(placeholder.detailConfig.render.apdArr, fieldName)) {
+                                if(this.contains(render.apdArr, fieldName)) {
                                     $el.append(data[fieldName]);
                                 } else {
                                     $el.text(data[fieldName]);
                                 }
 
-                                var attrs = placeholder.detailConfig.render.attrs[fieldName];
+                                var attrs = render.attrs[fieldName];
                                 for(var i in attrs) {
                                     $el.attr(attrs[i], data[fieldName]);
                                 }
@@ -329,7 +441,7 @@
                             var $el = this.$(el);
                             var flag = $el.data('entry');
 
-                            var hash = placeholder.detailConfig.render.entry[flag];
+                            var hash = render.entry[flag];
                             if(hash) {
                                 var path = hash + '/' + data.id;
                                 var tagName = el.tagName;
@@ -337,7 +449,7 @@
                                 if(tagName == 'A') {
                                     $el.attr('href', '#' + path);
                                 } else {
-                                    $el.attr('onclick', 'javascript:#' + path);
+                                    $el.attr('data-hpath', path);
                                 }
                             }
                         }));
@@ -358,6 +470,74 @@
                 }
             }
             return false;
+        },
+
+        //非A标签跳转
+        noAEntryClick : function(event) {
+            var path = this.$(event.target).data('hpath');
+            location.hash = path;
+        },
+
+
+        //分页内容
+        prevBtnBlk : function() {
+            var li = this.component('element', ['li']).addClass('prev').css({'float':'left', 'list-style-type':'none', 'width':'40px'});
+            var a = this.component('element', ['a']).attr('href', 'javascript:void(0);').append('&lt;');
+            li.append(a);
+            return li;
+        },
+
+        nextBtnBlk : function() {
+            var li = this.component('element', ['li']).addClass('next').css({'float':'left', 'list-style-type':'none', 'width':'40px'});
+            var a = this.component('element', ['a']).attr('href', 'javascript:void(0);').append('&gt;');
+            li.append(a);
+            return li;
+        },
+
+        actBtnBlk : function() {
+            var li = this.component('element', ['li']).css({'float':'left', 'list-style-type':'none', 'width':'40px'});
+            var a = this.component('element', ['a']).attr('href', 'javascript:void(0);').addClass('current');
+            li.append(a);
+            return li;
+        },
+
+        pageBtnBlk : function() {
+            var li = this.component('element', ['li']).addClass('num').css({'float':'left', 'list-style-type':'none', 'width':'40px'});
+            var a = this.component('element', ['a']).attr('href', 'javascript:void(0);');
+            li.append(a);
+            return li;
+        },
+
+        moitBtnBlk : function() {
+            return this.component('element', ['li']).text(' ... ').css({'float':'left', 'list-style-type':'none', 'width':'40px'});
+        },
+
+        show : function(currPage, totalPage) {
+            this.component('paginate', [currPage, totalPage]);
+        },
+
+        pervClick : function(event) {
+            var $el = this.$(event.target);
+            var index = $el.parents('*[data-index]').data('index').split('-')[0];
+            var currPage = this._placeholders[index].detailConfig.render.page.currPage;
+            var totalPage = this._placeholders[index].detailConfig.render.page.totalPage;
+            this.show(currPage - 1, totalPage);
+        },
+
+        nextClick : function(event) {
+            var $el = this.$(event.target);
+            var index = $el.parents('*[data-index]').data('index').split('-')[0];
+            var currPage = this._placeholders[index].detailConfig.render.page.currPage;
+            var totalPage = this._placeholders[index].detailConfig.render.page.totalPage;
+            this.show(currPage + 1, totalPage);
+        },
+
+        pageClick : function(event) {
+            var $el = this.$(event.target);
+            var index = $el.parents('*[data-index]').data('index').split('-')[0];
+            var currPage = this._placeholders[index].detailConfig.render.page.currPage;
+            var totalPage = this._placeholders[index].detailConfig.render.page.totalPage;
+            this.show(parseInt($el.text()), totalPage);
         }
 
     });
