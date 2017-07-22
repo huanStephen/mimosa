@@ -505,7 +505,7 @@
 	</branch>-->
 
 	<!--home-->
-	<branch path="/custom/article/getArticleList" type="get">
+	<branch path="/custom/resource/getPlaceholderData" type="get">
 		<static>
 			<![CDATA[{
 				"resultCode" : 0,
