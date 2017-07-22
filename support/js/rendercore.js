@@ -294,6 +294,9 @@
                         this._resType.ATTACHMENT == val.resourceType) {
                         baseModel = sepa.EntitiesManager.find('Resource');
                     }
+                    if (this._resType.PAGE == val.resourceType) {
+                        baseModel = sepa.EntitiesManager.find('Page');
+                    }
 
                     if (null == baseModel) {
                         throw('The placeholder entity model failed to load!');
