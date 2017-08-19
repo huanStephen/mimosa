@@ -54,18 +54,17 @@
         level : [],
 
         load : function() {
-            this.info = new PlaceholderEntity();
-            this.info.loadSession('rowInfo');
-            this.info.removeSession('rowInfo');
+            var placeholderId = indexCtrl.getDataShare('tempConfig', 'placeholderId');
 
             //this.renderNav();
 
-            if(this.info.id) {
+            if (placeholderId) {
                 this.t.text('编辑');
-                this.config.getInfo.params.placeholderId = this.info.id;
+                this.config.getInfo.params.placeholderId = placeholderId;
                 this.loadInfo();
             } else {
                 this.t.text('添加');
+                this.info = new PlaceholderEntity();
             }
 
         },
@@ -130,7 +129,8 @@
         },
 
         submitBefore : function() {
-            //this.component('saveSession', ['level', this.level]);
+            this.info.templateId = indexCtrl.getDataShare('tempConfig', 'templateId');
+            this.info.templateName = indexCtrl.getDataShare('tempConfig', 'templateName');
         },
 
         backClick : function() {

@@ -60,8 +60,8 @@
                 filter : {
 
                 },
-                //显示条数
-                size : 0,
+                //显示条数,默认为十条数据
+                size : 10,
                 //分页配置
                 page : {
                     //是否开启分页
@@ -112,18 +112,18 @@
 
         config : {
             getPageList : {
-                path : 'page/getPageList',
+                path : 'getPageList',
                 callback : 'getPageListResult'
             },
             getPagePlaceholderList : {
-                path : 'page/getPagePlaceholderList',
+                path : 'getPagePlaceholderList',
                 params : {
                     pageId : 0
                 },
                 callback : 'getPagePlaceholderListResult'
             },
             getPlaceholderData : {
-                path : 'resource/getPlaceholderData',
+                path : 'getPlaceholderData',
                 params : {
                     id : 0,
                     paramsArr : []
@@ -133,6 +133,7 @@
         },
 
         load : function() {
+            $(window).bind('hashchange', this.proxy(this.hashChange));
             this.component('remote', ['getPageList']);
         },
 
@@ -271,14 +272,14 @@
                 this.placeholderLoadComplateSize = 0;
                 list.forEach(this.proxy(function(val, idx, arr) {
                     // 添加占位符位
-                    this._placeholders[val.index] = {};
+                    this._placeholders[val.placeholderIndex] = {};
 
                     // 解析占位符详细配置
                     val.detailConfig = $.extend(true, this._placeholderDetailConfig,
                         $.trim(val.detailConfig) ? eval('(' + val.detailConfig + ')') : {});
 
                     // 添加占位符
-                    this._placeholders[val.index].placeholder = val;
+                    this._placeholders[val.placeholderIndex].placeholder = val;
 
                     // 添加数据模型
                     var baseModel = null;
@@ -301,18 +302,18 @@
                     if (null == baseModel) {
                         throw('The placeholder entity model failed to load!');
                     }
-                    this._placeholders[val.index].entities = new sepa.Class([baseModel.model, sepa.Model]);
+                    this._placeholders[val.placeholderIndex].entities = new sepa.Class([baseModel.model, sepa.Model]);
 
                     // 判断是否分页
-                    var render = this._placeholders[val.index].placeholder.detailConfig.render;
+                    var render = this._placeholders[val.placeholderIndex].placeholder.detailConfig.render;
 
                     if (render.page.isOpen) {
                         //如果有容器则使用该容器，否则使用默认容器
                         if (!$.trim(render.page.container)) {
-                            render.page.container = '*[data-index="' + val.index + '-page"]';
+                            render.page.container = '*[data-index="' + val.placeholderIndex + '-page"]';
                         }
-                        this.config[val.index + 'Page'] = $.extend(true, {}, render.page);
-                        this.component('openPage', [val.index + 'Page']);
+                        this.config[val.placeholderIndex + 'Page'] = $.extend(true, {}, render.page);
+                        this.component('openPage', [val.placeholderIndex + 'Page']);
                     }
 
                     this.loadPlaceholderData(val.id, this._hashParams);

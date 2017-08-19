@@ -26,13 +26,21 @@
 
         operateConfig : {
             entry : {
+                before : 'placeholderConfigBefore',
                 page : 'template/templatePlaceholderConfig.html',
-                requireRowInfo : true
+                requireRowInfo : false
             }
         },
 
         load : function() {
+            indexCtrl.setDataShare('tempConfig', {});
             this.loadList();
+        },
+
+        placeholderConfigBefore : function(event) {
+            var id = this.getRowId(event);
+            indexCtrl.addDataShare('tempConfig', 'templateId', id);
+            indexCtrl.addDataShare('tempConfig', 'templateName', this.Model.find(id).name);
         }
 
     });

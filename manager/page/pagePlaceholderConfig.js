@@ -41,6 +41,9 @@
         config : {
             getGroupContentList : {
                 path : 'page/getGroupContentList',
+                params : {
+                    placeholderId : 0
+                },
                 callback : 'getGroupContentListResult'
             },
             getInfo : {
@@ -63,14 +66,14 @@
 
         load : function() {
             this.info = new PagePlaceholderEntity();
-            this.info.loadSession('rowInfo');
-            this.info.removeSession('rowInfo');
+            var placeholderId = indexCtrl.getDataShare('pageConfig', 'placeholderId');
 
+            this.config.getGroupContentList.params.placeholderId = placeholderId;
             this.component('remote', ['getGroupContentList']);
 
             //this.renderNav();
 
-            this.config.getInfo.params.pageId = this.info.id;
+            this.config.getInfo.params.placeholderId = placeholderId;
             this.loadInfo();
 
         },

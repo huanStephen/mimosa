@@ -98,7 +98,7 @@
             } else {
                 var template = new TemplateEntity();
                 template.id = id;
-                template.name = this.$(event.target).parents('tr').find('*[data-field="templateName"]').text();
+                template.name = this.$(event.target).parents('tr').find('*[data-field="template"]').text();
                 template.createRemote('template/importTemplate', this.proxy(function(result) {
                     if(!result.errCode) {
                         alert('导入模板成功！');

@@ -6,6 +6,9 @@
 
     IndexController.include({
 
+        // 数据共享
+        dataShare : {},
+
         elements : {
             //菜单容器
             'ul.page-sidebar-menu' : 'sidebarContainer',
@@ -147,6 +150,27 @@
                     $(el).removeAttr("style");
                 }
             });
+        },
+
+        // 设置数据共享
+        setDataShare : function(domain, obj) {
+            this.dataShare[domain] = obj;
+        },
+
+        // 添加数据共享
+        addDataShare : function(domain, key, value) {
+            if (this.dataShare[domain]) {
+                this.dataShare[domain][key] = value;
+            }
+        },
+
+        // 获取数据共享
+        getDataShare : function(domain, key) {
+            if (this.dataShare[domain]) {
+                return this.dataShare[domain][key];
+            } else {
+                return null;
+            }
         }
     });
 

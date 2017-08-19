@@ -28,24 +28,31 @@
         operateConfig : {
             add : {
                 page : 'page/pageEdit.html',
-                requireRowInfo : true
+                requireRowInfo : false
             },
             entry : {
+                before : 'before',
                 page : 'page/pagePlaceholderList.html',
-                requireRowInfo : true
+                requireRowInfo : false
             },
             edit : {
+                before : 'before',
                 page : 'page/pageEdit.html',
-                requireRowInfo : true
+                requireRowInfo : false
             },
-            delete : {
+            'delete' : {
                 before : 'deleteBefore',
                 warning : '确定删除该页面？'
             }
         },
 
         load : function() {
+            indexCtrl.setDataShare('pageConfig', {});
             this.loadList();
+        },
+
+        before : function(event) {
+            indexCtrl.addDataShare('pageConfig', 'pageId', this.getRowId(event));
         },
 
         deleteBefore : function(event) {

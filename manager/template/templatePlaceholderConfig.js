@@ -38,26 +38,28 @@
 
         operateConfig : {
             add : {
+                before : 'placeholderEditBefore',
                 page : 'template/templatePlaceholderEdit.html',
-                requireRowInfo : true
+                requireRowInfo : false
             },
             edit : {
+                before : 'placeholderEditBefore',
                 page : 'template/templatePlaceholderEdit.html',
-                requireRowInfo : true
+                requireRowInfo : false
             },
-            delete : {
+            'delete' : {
                 before : 'deleteBefore',
                 warning : '确定删除该占位符？'
             }
         },
 
         load : function() {
-            this.info = new TemplateEntity();
-            this.info.loadSession('rowInfo');
-            this.info.removeSession('rowInfo');
-
-            this.config.getList.params.templateId = this.info.id;
+            this.config.getList.params.templateId = indexCtrl.getDataShare('tempConfig', 'templateId');
             this.loadList();
+        },
+
+        placeholderEditBefore : function(event) {
+            indexCtrl.addDataShare('tempConfig', 'placeholderId', this.getRowId(event));
         },
 
         deleteBefore : function(event) {

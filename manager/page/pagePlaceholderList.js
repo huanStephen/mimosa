@@ -24,17 +24,16 @@
 
         operateConfig : {
             entry : {
+                before : 'configBefore',
                 page : 'page/pagePlaceholderConfig.html',
-                requireRowInfo : true
+                requireRowInfo : false
             }
         },
 
         load : function() {
-            this.info = new PageEntity();
-            this.info.loadSession('rowInfo');
-            this.info.removeSession('rowInfo');
+            this.info = new PagePlaceholderEntity();
 
-            this.config.getList.params.pageId = this.id;
+            this.config.getList.params.pageId = indexCtrl.getDataShare('pageConfig', 'pageId');
             this.loadList();
         },
 
@@ -48,6 +47,10 @@
                 if('attachment' == fieldValue) return '附件';
             }
             return fieldValue;
+        },
+
+        configBefore : function(event) {
+            indexCtrl.addDataShare('pageConfig', 'placeholderId', this.getRowId(event));
         }
 
     });
